@@ -1,0 +1,18 @@
+.fade{
+    animation: fade 2.5s;
+    -webkit-animation: fade 2.5s;
+    -moz-animation: fade 2.5s;
+    -o-animation: fade 2.5s;
+    -ms-animation: fade 2.5s;
+}
+.fadeMenu{
+    animation: fade 1s;
+    -webkit-animation: fade 1s;
+    -moz-animation: fade 1s;
+    -o-animation: fade 1s;
+    -ms-animation: fade 1s;
+}
+@keyframes fade{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
