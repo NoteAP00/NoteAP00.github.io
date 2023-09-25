@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import About from './About';
+import Contact from './Contact';
+import Home from './Home';
+import Home2 from './Home-2';
+import Home3 from './Home-3';
 import './Header.css';
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -74,7 +78,7 @@ const Header = () => {
         // height : '85.9vh'
     };
 
-    
+
 
     return (
         <BrowserRouter>
@@ -87,14 +91,14 @@ const Header = () => {
                         className={({ isActive }) => (isActive ? "active_menu" : "menu")}
                         style={({ isActive }) => (isActive ? menuItemSelectStyle : menuItemStyle)}
                     >
-                        Home 
+                        Home
                     </NavLink>
                     <NavLink
                         to="/about"
                         className={({ isActive }) => (isActive ? "active_menu" : "menu")}
                         style={({ isActive }) => (isActive ? menuItemSelectStyle : menuItemStyle)}
                     >
-                        About 
+                        About
                     </NavLink>
                     <NavLink
                         to="/contact"
@@ -109,15 +113,23 @@ const Header = () => {
                 <Route
                     path="/"
                     element={
-                        <div style={inRouteStyle} className='fade'>
-                            
-                        </div>
-                        }
+                        <>
+                            <div style={inRouteStyle} className='fade'>
+                                <Home />
+                            </div>
+                            <div style={inRouteStyle} className='fade'>
+                                <Home2 />
+                            </div>
+                            <div style={inRouteStyle} className='fade'>
+                                <Home3 />
+                            </div>
+                        </>
+                    }
                 />
                 <Route
                     path="/about"
                     element={
-                        <div style={inRouteStyle } className='fade'>
+                        <div style={inRouteStyle} className='fade'>
                             <About />
                         </div>
                     }
@@ -126,7 +138,7 @@ const Header = () => {
                     path="/contact"
                     element={
                         <div style={inRouteStyle} className='fade'>
-                            
+                            <Contact />
                         </div>
                     }
                 />
@@ -137,7 +149,7 @@ const Header = () => {
                     }
                 />
             </Routes>
-            <div style={{height:'5vh'}}></div>
+            <div style={{ height: '5vh' }}></div>
         </BrowserRouter>
     );
 };

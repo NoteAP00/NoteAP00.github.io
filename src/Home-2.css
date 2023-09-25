@@ -1,0 +1,23 @@
+.home2-root{
+    animation: fade 5s;
+    -webkit-animation: fade 5s;
+    -moz-animation: fade 5s;
+    -o-animation: fade 5s;
+    -ms-animation: fade 5s;
+    margin: 1rem;
+    padding-bottom: 0.5rem ;
+}
+@keyframes fade{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+.pic{
+    width: 95%;
+    height: 95%;
+    object-fit: cover;
+    object-position: center;
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+

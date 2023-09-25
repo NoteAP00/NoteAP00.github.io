@@ -11,7 +11,9 @@
     -moz-animation: fade 1s;
     -o-animation: fade 1s;
     -ms-animation: fade 1s;
+    
 }
+
 @keyframes fade{
     from{opacity: 0;}
     to{opacity: 1;}
