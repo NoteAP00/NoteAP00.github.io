@@ -1,0 +1,2290 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📘 CIS-Data Foundation - Exam Prep</title>
+    <style>
+        :root {
+            --bg: #0a0e1a;
+            --card: #131a2e;
+            --card-hover: #1a2340;
+            --border: #1e2a4a;
+            --accent: #3b82f6;
+            --accent2: #06b6d4;
+            --gold: #f59e0b;
+            --green: #10b981;
+            --red: #ef4444;
+            --purple: #a855f7;
+            --text: #e2e8f0;
+            --text2: #94a3b8;
+            --text3: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 50%, #1a1040 100%);
+            padding: 30px 20px 25px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.4em;
+            background: linear-gradient(90deg, #60a5fa, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: var(--text3);
+            font-size: 0.85em;
+        }
+
+        /* ===== QUICK NAV ===== */
+        .quick-nav {
+            display: flex;
+            gap: 6px;
+            overflow-x: auto;
+            padding: 12px 15px;
+            background: rgba(0,0,0,0.4);
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .quick-nav::-webkit-scrollbar { display: none; }
+
+        .nav-pill {
+            flex-shrink: 0;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1.5px solid var(--border);
+            background: var(--card);
+            color: var(--text2);
+            text-decoration: none;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .nav-pill:hover, .nav-pill.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        .nav-pill.p1 { border-color: #3b82f6; }
+        .nav-pill.p2 { border-color: #06b6d4; }
+        .nav-pill.p3 { border-color: #a855f7; }
+        .nav-pill.p4 { border-color: #10b981; }
+        .nav-pill.p5 { border-color: #f59e0b; }
+        .nav-pill.p6 { border-color: #ef4444; }
+
+        /* ===== MAIN ===== */
+        .main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* ===== SECTION HEADER ===== */
+        .section-header {
+            margin: 30px 0 15px;
+            padding: 18px 20px;
+            border-radius: 16px;
+            border-left: 5px solid;
+            background: var(--card);
+        }
+
+        .section-header h2 {
+            font-size: 1.25em;
+            margin-bottom: 4px;
+        }
+
+        .section-header .section-desc {
+            font-size: 0.85em;
+            color: var(--text2);
+        }
+
+        .s-csdm { border-color: #3b82f6; }
+        .s-ingest { border-color: #06b6d4; }
+        .s-config { border-color: #a855f7; }
+        .s-govern { border-color: #10b981; }
+        .s-insight { border-color: #f59e0b; }
+        .s-cheat { border-color: #ef4444; }
+
+        /* ===== SUMMARY BOX ===== */
+        .summary-box {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .summary-box h3 {
+            color: var(--accent2);
+            font-size: 1.05em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ===== TABLES ===== */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.9em;
+        }
+
+        .info-table th {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+            padding: 10px 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .info-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            vertical-align: top;
+        }
+
+        .info-table tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+
+        /* ===== KEYWORD BOX ===== */
+        .kw-box {
+            background: rgba(6, 182, 212, 0.08);
+            border-left: 4px solid var(--accent2);
+            padding: 14px 16px;
+            margin: 10px 0;
+            border-radius: 0 12px 12px 0;
+            font-size: 0.92em;
+            line-height: 1.8;
+        }
+
+        .kw-box code, code {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--gold);
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.9em;
+            font-family: 'Menlo', 'Courier New', monospace;
+        }
+
+        /* ===== QUESTION CARD ===== */
+        .q-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .q-card:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .q-head {
+            padding: 16px 18px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .q-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.85em;
+            flex-shrink: 0;
+        }
+
+        .q-tag {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-mc { background: rgba(16,185,129,0.15); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+        .tag-multi { background: rgba(168,85,247,0.15); color: var(--purple); border: 1px solid rgba(168,85,247,0.3); }
+        .tag-drag { background: rgba(245,158,11,0.15); color: var(--gold); border: 1px solid rgba(245,158,11,0.3); }
+
+        .q-section-tag {
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.68em;
+            background: rgba(255,255,255,0.05);
+            color: var(--text3);
+        }
+
+        .q-body {
+            padding: 0 18px 18px;
+        }
+
+        .q-text {
+            font-size: 0.95em;
+            line-height: 1.75;
+            margin-bottom: 14px;
+            color: #f1f5f9;
+        }
+
+        .q-text em {
+            color: var(--gold);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        /* ===== CHOICES ===== */
+        .choices {
+            list-style: none;
+        }
+
+        .choice {
+            padding: 11px 14px;
+            margin: 5px 0;
+            background: rgba(255,255,255,0.03);
+            border: 1.5px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.9em;
+            line-height: 1.6;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .choice:active {
+            transform: scale(0.98);
+        }
+
+        .choice-label {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8em;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .choice.selected {
+            background: rgba(59,130,246,0.12);
+            border-color: var(--accent);
+        }
+
+        .choice.correct {
+            background: rgba(16,185,129,0.12);
+            border-color: var(--green);
+        }
+
+        .choice.correct .choice-label {
+            background: var(--green);
+            color: #fff;
+        }
+
+        .choice.wrong {
+            background: rgba(239,68,68,0.1);
+            border-color: var(--red);
+        }
+
+        .choice.wrong .choice-label {
+            background: var(--red);
+            color: #fff;
+        }
+
+        .choice.disabled {
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        /* ===== DRAG DROP ANSWER TABLE ===== */
+        .drag-answer {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88em;
+            margin: 10px 0;
+        }
+
+        .drag-answer th {
+            background: rgba(245,158,11,0.12);
+            color: var(--gold);
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .drag-answer td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            vertical-align: top;
+        }
+
+        .drag-answer .arrow {
+            color: var(--accent2);
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 22px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn:active { transform: scale(0.96); }
+
+        .btn-check {
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+        }
+
+        .btn-show {
+            background: rgba(245,158,11,0.15);
+            color: var(--gold);
+            border: 1px solid rgba(245,158,11,0.3);
+        }
+
+        .btn-reset {
+            background: rgba(255,255,255,0.06);
+            color: var(--text2);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ===== EXPLANATION ===== */
+        .explanation {
+            display: none;
+            margin-top: 14px;
+            padding: 16px;
+            background: rgba(16,185,129,0.06);
+            border: 1px solid rgba(16,185,129,0.15);
+            border-radius: 12px;
+            font-size: 0.9em;
+            line-height: 1.8;
+        }
+
+        .explanation.show { display: block; animation: fadeUp 0.4s ease; }
+
+        .explanation .ans-label {
+            color: var(--green);
+            font-weight: 700;
+            font-size: 0.95em;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .explanation .ref {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.78em;
+            color: var(--text3);
+        }
+
+        /* ===== CHEAT SHEET ===== */
+        .cheat {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(239,68,68,0.2);
+            border-radius: 14px;
+            padding: 18px;
+            margin: 12px 0;
+            font-family: 'Menlo', 'Courier New', monospace;
+            font-size: 0.82em;
+            line-height: 2;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        .cheat-title {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1em;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* ===== PROGRESS ===== */
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: rgba(255,255,255,0.05);
+            z-index: 200;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent2), var(--green));
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        /* ===== SCORE FLOAT ===== */
+        .score-float {
+            position: fixed;
+            bottom: 20px;
+            right: 15px;
+            background: rgba(10,14,26,0.95);
+            border: 1.5px solid var(--accent);
+            border-radius: 16px;
+            padding: 12px 18px;
+            z-index: 200;
+            backdrop-filter: blur(12px);
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .score-float .score-num {
+            font-size: 1.6em;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--green), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .score-float .score-label {
+            font-size: 0.7em;
+            color: var(--text3);
+        }
+
+        /* ===== BACK TO TOP ===== */
+        .back-top {
+            position: fixed;
+            bottom: 20px;
+            left: 15px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1.5px solid var(--border);
+            color: var(--text2);
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 200;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .back-top:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.2em; }
+            .q-text { font-size: 0.9em; }
+            .choice { font-size: 0.85em; padding: 10px 12px; }
+            .info-table { font-size: 0.82em; }
+            .summary-box { padding: 16px; }
+        }
+
+        /* ===== COLLAPSIBLE ===== */
+        .collapse-btn {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: var(--accent2);
+            font-size: 1.05em;
+            font-weight: 600;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .collapse-btn .arrow-icon {
+            transition: transform 0.3s;
+            font-size: 0.8em;
+        }
+
+        .collapse-btn.open .arrow-icon {
+            transform: rotate(90deg);
+        }
+
+        .collapse-content {
+            display: none;
+            margin-top: 10px;
+        }
+
+        .collapse-content.open {
+            display: block;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .highlight {
+            background: rgba(245,158,11,0.12);
+            padding: 1px 5px;
+            border-radius: 3px;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            margin: 25px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header" id="top">
+    <h1>📘 CIS-Data Foundation Exam Prep</h1>
+    <p>ServiceNow CMDB & CSDM | สรุป + ข้อสอบ + เฉลย</p>
+</div>
+
+<!-- QUICK NAV -->
+<div class="quick-nav">
+    <a class="nav-pill p1" href="#sec-csdm">🏛️ CSDM</a>
+    <a class="nav-pill p2" href="#sec-ingest">📥 Ingest</a>
+    <a class="nav-pill p3" href="#sec-config">⚙️ Config</a>
+    <a class="nav-pill p4" href="#sec-govern">🛡️ Govern</a>
+    <a class="nav-pill p5" href="#sec-insight">🔍 Insight</a>
+    <a class="nav-pill p6" href="#sec-cheat">🔑 CheatSheet</a>
+</div>
+
+<div class="main">
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║  SECTION 1: CSDM FUNDAMENTALS            ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+
+<div class="section-header s-csdm" id="sec-csdm">
+    <h2>🏛️ SECTION 1: CSDM Fundamentals</h2>
+    <p class="section-desc">ออกเยอะที่สุด! จำ 5 Domains + Maturity Stages + Information Object</p>
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-box">
+    <button class="collapse-btn open" onclick="toggleCollapse(this)">
+        <span class="arrow-icon">▶</span> สรุป CSDM ที่ต้องจำ
+    </button>
+    <div class="collapse-content open">
+
+        <div class="kw-box" style="margin-top:12px;">
+            <strong>CSDM = Common Service Data Model</strong><br>
+            คือ "แบบแปลน" มาตรฐานที่กำหนดว่าข้อมูลอะไรควรอยู่ตรงไหนใน CMDB
+        </div>
+
+        <h3 style="color:var(--gold);margin:16px 0 8px;">📌 5 Domains – ต้องจำ!</h3>
+        <table class="info-table">
+            <tr><th>Domain</th><th>Keywords (เห็นคำนี้ → ตอบทันที)</th></tr>
+            <tr><td>🏗️ <strong>Design & Planning</strong></td><td>capabilities, redundancies, costs, investment, roadmap, strategic, Enterprise Architect</td></tr>
+            <tr><td>🔧 <strong>Service Delivery</strong></td><td>technical services, technical service offerings, monitoring systems, operate, technology CIs</td></tr>
+            <tr><td>🛒 <strong>Service Consumption</strong><br>(Sell/Consume)</td><td>business services, consumer, catalog item, ownership, cost, scope, request access</td></tr>
+            <tr><td>🧱 <strong>Foundation</strong></td><td>base system tables, locations, users, groups, highest value, Product Models</td></tr>
+            <tr><td>🔨 <strong>Build & Integration</strong></td><td>SDLC, build pipeline (ออกน้อย)</td></tr>
+        </table>
+
+        <h3 style="color:var(--gold);margin:16px 0 8px;">📌 Maturity Stages</h3>
+        <table class="info-table">
+            <tr><th>Stage</th><th>จำง่ายๆ</th></tr>
+            <tr><td>🧱 Foundation</td><td>ข้อมูลพื้นฐาน (Product Models, Locations)</td></tr>
+            <tr><td>🐛 Crawl</td><td>เริ่มจัดการ CIs พื้นฐาน</td></tr>
+            <tr><td>🚶 <strong>Walk ⭐</strong></td><td><strong>BSO depend on Application Services ← ออกสอบ!</strong></td></tr>
+            <tr><td>🏃 Run</td><td>Technical Services เต็มรูปแบบ</td></tr>
+            <tr><td>🦅 Fly</td><td>สมบูรณ์ครบทุกอย่าง</td></tr>
+        </table>
+
+        <h3 style="color:var(--gold);margin:16px 0 8px;">📌 Information Object</h3>
+        <div class="kw-box">
+            <code>Information Object</code> = ข้อมูลเชิงตรรกะ (logical data) ที่ผูกกับ <code>Business Application</code><br>
+            ใช้ track regulated data เช่น PII, PCI, HIPAA
+        </div>
+
+        <h3 style="color:var(--gold);margin:16px 0 8px;">📌 Business Values of CMDB</h3>
+        <div class="kw-box">
+            1. Strengthening operational resiliency<br>
+            2. Streaming incident and change management
+        </div>
+
+        <h3 style="color:var(--gold);margin:16px 0 8px;">📌 Sell/Consume Domain Tables</h3>
+        <div class="kw-box">
+            <code>Business Service Offering</code> + <code>Business Service</code>
+        </div>
+    </div>
+</div>
+
+<!-- Q1 DRAG DROP -->
+<div class="q-card" id="q1">
+    <div class="q-head">
+        <span class="q-num">1</span>
+        <span class="q-tag tag-drag">DRAG & DROP</span>
+        <span class="q-section-tag">CSDM</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            An Enterprise Architect needs to help the CMDB owner understand the <em>benefits of CSDM</em>.<br>
+            Drag the CSDM domains to the respective benefits.
+        </p>
+        <table class="drag-answer">
+            <tr><th>Domain</th><th class="arrow">→</th><th>Benefit</th></tr>
+            <tr>
+                <td><strong>Design & Planning</strong></td>
+                <td class="arrow">→</td>
+                <td>Understand CIs related to business application and capabilities to identify <em>redundancies</em>, monitor <em>costs</em>, and make better <em>investment decisions</em></td>
+            </tr>
+            <tr>
+                <td><strong>Service Delivery</strong></td>
+                <td class="arrow">→</td>
+                <td>Understand <em>technical services</em>, technical service offerings, and relationships to underlying <em>technology CIs</em></td>
+            </tr>
+            <tr>
+                <td><strong>Service Consumption</strong></td>
+                <td class="arrow">→</td>
+                <td>Understand <em>business services</em>, <em>ownership</em>, cost, scope offered to <em>consumer</em></td>
+            </tr>
+            <tr>
+                <td><strong>Foundation</strong></td>
+                <td class="arrow">→</td>
+                <td>Use <em>base system tables</em> to derive <em>highest value</em> from ServiceNow</td>
+            </tr>
+        </table>
+        <div class="btn-group">
+            <button class="btn btn-show" onclick="toggleExp('exp-q1')">📖 ดูคำอธิบาย</button>
+        </div>
+        <div class="explanation" id="exp-q1">
+            <span class="ans-label">✅ เทคนิคจำ:</span>
+            • เห็น "capabilities, redundancies, costs, investment" → <strong>Design & Planning</strong><br>
+            • เห็น "technical services, technology CIs" → <strong>Service Delivery</strong><br>
+            • เห็น "business services, consumer, ownership" → <strong>Service Consumption</strong><br>
+            • เห็น "base system tables, highest value" → <strong>Foundation</strong><br>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-card" id="q2">
+    <div class="q-head">
+        <span class="q-num">2</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">CSDM</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            A Service Portfolio Manager wants to know what <em>Application Services</em> their <em>Business Service Offerings</em> depend on.<br>
+            What stage of CSDM would map this relationship?
+        </p>
+        <ul class="choices" data-quiz="q2" data-answer="E">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Fly</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Foundation</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Run</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Crawl</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="E"><span class="choice-label">E</span>Walk</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q2')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q2')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q2">
+            <span class="ans-label">✅ คำตอบ: E. Walk</span>
+            Walk stage = ขั้นที่ BSO เชื่อมกับ Application Services<br>
+            🔑 เห็น "BSO depend on Application Services" → <strong>Walk</strong> เสมอ!
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-card" id="q3">
+    <div class="q-head">
+        <span class="q-num">3</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">CSDM</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            A health organization must track certain data (for example, <em>regulated patient information</em>) and its relation to <em>Business Applications</em>.<br>
+            Which action does CSDM recommend?
+        </p>
+        <ul class="choices" data-quiz="q3" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Create an Information Object to represent the patient information, then link it through a relationship to the Business Application after consulting with the Application owner.</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Create fields on the Business Application record to mark it as containing patient information.</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Work with the Database administration team to classify the data on each database.</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q3')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q3')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q3">
+            <span class="ans-label">✅ คำตอบ: A</span>
+            CSDM แนะนำ → สร้าง <strong>Information Object</strong> แล้ว link กับ Business Application<br>
+            ❌ ไม่ควรสร้าง field เพิ่ม (ไม่ยืดหยุ่น)<br>
+            ❌ ไม่ควรทำที่ระดับ Database (ไม่ใช่ logical level)<br>
+            🔑 "regulated data" + "Business Application" → <strong>Information Object</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q4 -->
+<div class="q-card" id="q4">
+    <div class="q-head">
+        <span class="q-num">4</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">CSDM</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            What is the purpose of an <em>information object</em>?
+        </p>
+        <ul class="choices" data-quiz="q4" data-answer="B">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>It describes data in general on a group of Configuration Items.</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>It describes the logical data to the Business Applications.</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q4')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q4')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q4">
+            <span class="ans-label">✅ คำตอบ: B</span>
+            Information Object = <strong>logical data</strong> ที่ผูกกับ <strong>Business Application</strong><br>
+            ใช้ track ว่า app ไหนเก็บข้อมูลอะไร (PII, PCI, HIPAA)
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q5 -->
+<div class="q-card" id="q5">
+    <div class="q-head">
+        <span class="q-num">5</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">CSDM</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            An application holds <em>PII and PCI</em> data. Where in CSDM does the team store information to satisfy <em>audits</em>?
+        </p>
+        <ul class="choices" data-quiz="q5" data-answer="B">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Technology Management Service Offerings and Dynamic CI Groups</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Business Applications and Information Objects</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Customer Service Offerings and Databases</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q5')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q5')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q5">
+            <span class="ans-label">✅ คำตอบ: B</span>
+            PII/PCI + audit → ใช้:<br>
+            • <strong>Business Applications</strong> (ระบุว่า app ไหน)<br>
+            • <strong>Information Objects</strong> (ระบุว่าเก็บข้อมูลอะไร)<br>
+            🔑 "PII/PCI" + "audit" → Business App + Info Object
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q6 -->
+<div class="q-card" id="q6">
+    <div class="q-head">
+        <span class="q-num">6</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">CSDM</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Map <em>production line monitoring systems</em> to the appropriate CSDM domain.
+        </p>
+        <ul class="choices" data-quiz="q6" data-answer="B">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Service Consumption (Sell/Consume)</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Service Delivery (Manage Technical)</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Build and Integration</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Design and Planning</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="E"><span class="choice-label">E</span>Foundation</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q6')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q6')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q6">
+            <span class="ans-label">✅ คำตอบ: B. Service Delivery</span>
+            Monitoring systems = technical capability → <strong>Service Delivery</strong><br>
+            🔑 "monitoring" + "technical" → Service Delivery
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q7 -->
+<div class="q-card" id="q7">
+    <div class="q-head">
+        <span class="q-num">7</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">CSDM</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Which CMDB tables build the CSDM <em>sell/consume</em> domain?
+        </p>
+        <ul class="choices" data-quiz="q7" data-answer="B">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Application Service, Technical Service, Technical Service Offering</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Business Service Offering, Business Service</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Business Capability, Information Object, Business Application</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q7')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q7')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q7">
+            <span class="ans-label">✅ คำตอบ: B</span>
+            Sell/Consume domain = ฝั่ง Business/Consumer<br>
+            ใช้ tables: <strong>Business Service Offering</strong> + <strong>Business Service</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q8 -->
+<div class="q-card" id="q8">
+    <div class="q-head">
+        <span class="q-num">8</span>
+        <span class="q-tag tag-multi">MULTI ×2</span>
+        <span class="q-section-tag">CSDM</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Which are <em>business values</em> of CMDB? (Choose two.)
+        </p>
+        <ul class="choices" data-quiz="q8" data-answer="A,B" data-multi="true">
+            <li class="choice" onclick="toggleMulti(this)" data-v="A"><span class="choice-label">A</span>Strengthening operational resiliency</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="B"><span class="choice-label">B</span>Streaming incident and change management</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="C"><span class="choice-label">C</span>Collecting and managing financial data</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="D"><span class="choice-label">D</span>Automating maintenance for CI relationships</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkMulti('q8')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q8')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q8">
+            <span class="ans-label">✅ คำตอบ: A + B</span>
+            Business values ของ CMDB:<br>
+            1. <strong>Strengthening operational resiliency</strong> → เสริมความแข็งแกร่ง<br>
+            2. <strong>Streaming incident and change management</strong> → ทำให้ไหลลื่นขึ้น<br>
+            ❌ CMDB ไม่ได้จัดการข้อมูลการเงิน
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q9 -->
+<div class="q-card" id="q9">
+    <div class="q-head">
+        <span class="q-num">9</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">CSDM</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            A CMDB Administrator is implementing <em>Vulnerability Response</em> and needs to ensure customers have enough context to <em>estimate risk</em> and set task priorities.<br>
+            Which Get Well Playbook from the CSDM Data Foundation Dashboard helps?
+        </p>
+        <ul class="choices" data-quiz="q9" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Application Services with Business Application Relationships</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Named Product Models without Product Owners</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Percentage of Custom Status Values for CI Life Cycle Stages</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Locations without a Parent Location</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q9')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q9')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q9">
+            <span class="ans-label">✅ คำตอบ: A</span>
+            Vulnerability + risk → ต้องมี context = รู้ว่า Application Service เชื่อมกับ Business App อะไร → ประเมิน business impact ได้<br>
+            🔑 "Vulnerability" + "risk" + "context" → <strong>App Services with Business Application Relationships</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- DIVIDER -->
+<div class="divider"></div>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║  SECTION 2: INGEST                       ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+
+<div class="section-header s-ingest" id="sec-ingest">
+    <h2>📥 SECTION 2: Ingest</h2>
+    <p class="section-desc">นำข้อมูลเข้า CMDB – Connectors, IRE, ETL, CMDBTransformUtil</p>
+</div>
+
+<div class="summary-box">
+    <button class="collapse-btn open" onclick="toggleCollapse(this)">
+        <span class="arrow-icon">▶</span> สรุป Ingest ที่ต้องจำ
+    </button>
+    <div class="collapse-content open">
+        <table class="info-table">
+            <tr><th>Concept</th><th>จำ Keyword</th></tr>
+            <tr><td><strong>Service Graph Connectors</strong></td><td>2 ประเภท: <code>Cloud</code> + <code>Observability</code> | fastest time to value</td></tr>
+            <tr><td><strong>CMDBTransformUtil API</strong></td><td>import set + vendor + prevent duplicate → ใช้ตัวนี้!</td></tr>
+            <tr><td><strong>IRE</strong></td><td>Identification (มีอยู่ไหม) + Reconciliation (เอาค่าไหน)</td></tr>
+            <tr><td><strong>IntegrationHub ETL</strong></td><td>third-party data + uses IRE</td></tr>
+            <tr><td><strong>Class Upgrade</strong></td><td>parent → child (เฉพาะเจาะจงขึ้น)</td></tr>
+            <tr><td><strong>Largest Value</strong></td><td>เอาค่ามากสุด ไม่ใช่รวมกัน!</td></tr>
+            <tr><td><strong>Customized + Upgrade</strong></td><td>skipped change (ข้ามไม่ update)</td></tr>
+            <tr><td><strong>Auto Relationships</strong></td><td>Service Mapping + Discovery</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- Q10 -->
+<div class="q-card" id="q10">
+    <div class="q-head">
+        <span class="q-num">10</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Ingest</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            A CMDB Administrator needs to prevent <em>duplicate CI creation</em> from <em>import sets</em> that load data from <em>vendor shipment files</em>.<br>
+            How can the Administrator do this?
+        </p>
+        <ul class="choices" data-quiz="q10" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Use the CMDBTransformUtil API in the transform script</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Set the system property to utilize the IRE within transform maps</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Create comparison rules in the IRE</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Set the coalesce on two mappings within the transform map</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q10')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q10')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q10">
+            <span class="ans-label">✅ คำตอบ: A. CMDBTransformUtil API</span>
+            ใช้ใน transform script → ส่งข้อมูลผ่าน IRE → ตรวจ CI ซ้ำ → ป้องกัน duplicate<br>
+            🔑 "import set" + "vendor" + "duplicate" → <strong>CMDBTransformUtil API</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q11 -->
+<div class="q-card" id="q11">
+    <div class="q-head">
+        <span class="q-num">11</span>
+        <span class="q-tag tag-multi">MULTI ×2</span>
+        <span class="q-section-tag">Ingest</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Which <em>categories</em> of Service Graph Connectors are available? (Choose two.)
+        </p>
+        <ul class="choices" data-quiz="q11" data-answer="B,D" data-multi="true">
+            <li class="choice" onclick="toggleMulti(this)" data-v="A"><span class="choice-label">A</span>DevOps</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="B"><span class="choice-label">B</span>Cloud</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="C"><span class="choice-label">C</span>Workflow Automation</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="D"><span class="choice-label">D</span>Observability</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkMulti('q11')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q11')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q11">
+            <span class="ans-label">✅ คำตอบ: B (Cloud) + D (Observability)</span>
+            Service Graph Connector มี 2 ประเภท:<br>
+            1. <strong>Cloud</strong> → AWS, Azure, GCP<br>
+            2. <strong>Observability</strong> → Datadog, Dynatrace, SolarWinds
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q12 -->
+<div class="q-card" id="q12">
+    <div class="q-head">
+        <span class="q-num">12</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Ingest</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Ingest data from <em>Microsoft SCCM</em>. Which method brings the <em>fastest time to value</em>?
+        </p>
+        <ul class="choices" data-quiz="q12" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Service Graph Connectors</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Import Sets</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Agent Client Collector</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>IntegrationHub ETL</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q12')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q12')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q12">
+            <span class="ans-label">✅ คำตอบ: A. Service Graph Connectors</span>
+            Prebuilt, standardized → config น้อย → ใช้งานได้เร็ว = <strong>fastest time to value</strong><br>
+            🔑 "SCCM" + "fastest" → Service Graph Connectors
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q13 -->
+<div class="q-card" id="q13">
+    <div class="q-head">
+        <span class="q-num">13</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Ingest</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            A Service Graph Connector's <em>script transform was customized</em>. What happens on subsequent <em>upgrades</em>?
+        </p>
+        <ul class="choices" data-quiz="q13" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>A skipped change is created and no change is made to the script transform definition.</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>The Service Graph Connector upgrade refuses to start.</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>The upgrade stops and reports an error.</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q13')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q13')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q13">
+            <span class="ans-label">✅ คำตอบ: A. Skipped change</span>
+            Customized + upgrade → ระบบ <strong>skip</strong> → ไม่เขียนทับ, ไม่ error<br>
+            🔑 "customized" + "upgrade" → <strong>skipped change</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q14 -->
+<div class="q-card" id="q14">
+    <div class="q-head">
+        <span class="q-num">14</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Ingest</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            An IRE rule classified a record from the <em>Server</em> table to the <em>Windows Server</em> table (more specific child class).<br>
+            Which process occurred?
+        </p>
+        <ul class="choices" data-quiz="q14" data-answer="D">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Class Downgrade</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Class Switch</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Class Change</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Class Upgrade</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q14')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q14')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q14">
+            <span class="ans-label">✅ คำตอบ: D. Class Upgrade</span>
+            Server (parent) → Windows Server (child, เฉพาะเจาะจงกว่า)<br>
+            กว้าง → เฉพาะเจาะจง = <strong>Class Upgrade</strong> (ยกระดับให้ละเอียดขึ้น)
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q15 -->
+<div class="q-card" id="q15">
+    <div class="q-head">
+        <span class="q-num">15</span>
+        <span class="q-tag tag-multi">MULTI ×2</span>
+        <span class="q-section-tag">Ingest</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            What are the characteristics of <em>IntegrationHub ETL</em>? (Choose two.)
+        </p>
+        <ul class="choices" data-quiz="q15" data-answer="C,D" data-multi="true">
+            <li class="choice" onclick="toggleMulti(this)" data-v="A"><span class="choice-label">A</span>Imports Microsoft SCCM/Intune data into the CMDB</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="B"><span class="choice-label">B</span>Performs discovery data collection and updates the CMDB</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="C"><span class="choice-label">C</span>Integrates third-party data into the CMDB or into non-CMDB tables</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="D"><span class="choice-label">D</span>Uses the IRE to process and integrate data</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkMulti('q15')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q15')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q15">
+            <span class="ans-label">✅ คำตอบ: C + D</span>
+            IntegrationHub ETL:<br>
+            1. <strong>C</strong> - third-party data เข้า CMDB หรือ non-CMDB tables<br>
+            2. <strong>D</strong> - ใช้ IRE process → ป้องกัน duplicate<br>
+            ❌ A: SCCM ใช้ Service Graph Connector<br>
+            ❌ B: Discovery collection เป็นหน้าที่ Discovery
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q16 -->
+<div class="q-card" id="q16">
+    <div class="q-head">
+        <span class="q-num">16</span>
+        <span class="q-tag tag-multi">MULTI ×2</span>
+        <span class="q-section-tag">Ingest</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Which solutions <em>automatically create relationships</em> between CI Applications that are part of an Application Service? (Choose two.)
+        </p>
+        <ul class="choices" data-quiz="q16" data-answer="A,D" data-multi="true">
+            <li class="choice" onclick="toggleMulti(this)" data-v="A"><span class="choice-label">A</span>Discovery</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="B"><span class="choice-label">B</span>IntegrationHub ETL</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="C"><span class="choice-label">C</span>Event Management</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="D"><span class="choice-label">D</span>Service Mapping</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="E"><span class="choice-label">E</span>Data Manager</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkMulti('q16')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q16')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q16">
+            <span class="ans-label">✅ คำตอบ: A (Discovery) + D (Service Mapping)</span>
+            🔑 จำคู่: <strong>Discovery + Service Mapping</strong> = สร้าง relationship อัตโนมัติ
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- DIVIDER -->
+<div class="divider"></div>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║  SECTION 3: CONFIGURATION                ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+
+<div class="section-header s-config" id="sec-config">
+    <h2>⚙️ SECTION 3: Configuration</h2>
+    <p class="section-desc">ตั้งค่า CMDB – CI Class Manager, IRE Rules, Relationships</p>
+</div>
+
+<div class="summary-box">
+    <button class="collapse-btn open" onclick="toggleCollapse(this)">
+        <span class="arrow-icon">▶</span> สรุป Configuration ที่ต้องจำ
+    </button>
+    <div class="collapse-content open">
+        <table class="info-table">
+            <tr><th>Concept</th><th>Keyword จำ</th></tr>
+            <tr><td><strong>CI Class Manager</strong></td><td>central location = attributes + IRE rules + relationships</td></tr>
+            <tr><td><strong>Custom CMDB Table</strong></td><td>prefix = <code>u_cmdb_ci</code></td></tr>
+            <tr><td><strong>Same app multiple instances</strong></td><td>→ <code>Configuration File Path</code></td></tr>
+            <tr><td><strong>No match, try parent</strong></td><td>→ <code>Allow fallback to parent's rules</code></td></tr>
+            <tr><td><strong>App ↔ Server relationship</strong></td><td>Application → <code>Runs on</code> :: <code>Runs</code> → Server</td></tr>
+            <tr><td><strong>Dynamic CI Group + Change</strong></td><td>→ <code>Affected CIs</code> related list</td></tr>
+            <tr><td><strong>CI selected on Incident</strong></td><td>→ auto populate <code>Assignment Group</code></td></tr>
+            <tr><td><strong>CMDB 360 / Multisource</strong></td><td>→ <code>glide.identification_engine.multisource_enabled</code></td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- Q17 -->
+<div class="q-card" id="q17">
+    <div class="q-head">
+        <span class="q-num">17</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Config</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Creating technical documentation including <em>attributes</em>, <em>IRE rules</em>, and <em>suggested relationships</em>.<br>
+            Which <em>central location</em> does the Admin use?
+        </p>
+        <ul class="choices" data-quiz="q17" data-answer="D">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>CI Identifiers</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>CMDB Data Manager</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>CMDB Workspace</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>CI Class Manager</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q17')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q17')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q17">
+            <span class="ans-label">✅ คำตอบ: D. CI Class Manager</span>
+            CI Class Manager = ศูนย์กลาง: Attributes + IRE Rules + Relationships + Hierarchy<br>
+            🔑 "central location" + "attributes" + "IRE rules" → <strong>CI Class Manager</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q18 -->
+<div class="q-card" id="q18">
+    <div class="q-head">
+        <span class="q-num">18</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Config</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Which field on an <em>Incident form</em> is automatically populated after a <em>CI is selected</em> that references an appropriate support group?
+        </p>
+        <ul class="choices" data-quiz="q18" data-answer="D">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Support Group</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Approval Group</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Managed by Group</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Assignment Group</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="E"><span class="choice-label">E</span>Change Group</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q18')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q18')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q18">
+            <span class="ans-label">✅ คำตอบ: D. Assignment Group</span>
+            ⚠️ ระวัง! ไม่ใช่ "Support Group" → คำตอบคือ <strong>Assignment Group</strong><br>
+            CI ที่มี support group → auto route incident ไปยัง Assignment Group
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q19 -->
+<div class="q-card" id="q19">
+    <div class="q-head">
+        <span class="q-num">19</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Config</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Which system property must be enabled for <em>CMDB 360/Multisource CMDB</em>?
+        </p>
+        <ul class="choices" data-quiz="q19" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>glide.identification_engine.multisource_enabled</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>glide.identification_engine.multisource_cmdb_ci_enabled</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>glide.identification_engine.multisource.query.max.limit</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>glide.identification_engine.multisource_non_cmdb_ci_enabled</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q19')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q19')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q19">
+            <span class="ans-label">✅ คำตอบ: A</span>
+            🔑 "CMDB 360" + "Multisource" → <code>glide.identification_engine.multisource_enabled</code><br>
+            เปิดแล้ว → CMDB เก็บค่า attribute จากหลาย data source ได้
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q20 -->
+<div class="q-card" id="q20">
+    <div class="q-head">
+        <span class="q-num">20</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Config</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            What happens to a <em>Dynamic CI Group</em> when it is referenced from the Configuration Item field on a <em>Change form</em>?
+        </p>
+        <ul class="choices" data-quiz="q20" data-answer="C">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>It calculates impact against the Dynamic CI Group.</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>It displays all related CIs in the Impacted Services related list.</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>It displays all related CIs in the Affected CIs related list.</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q20')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q20')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q20">
+            <span class="ans-label">✅ คำตอบ: C. Affected CIs related list</span>
+            Dynamic CI Group → ใส่ใน Change → expand ออกมาเป็น <strong>Affected CIs</strong><br>
+            🔑 "Dynamic CI Group" + "Change" → <strong>Affected CIs</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q21 -->
+<div class="q-card" id="q21">
+    <div class="q-head">
+        <span class="q-num">21</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Config</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            What is the starting <em>prefix</em> for all <em>custom CMDB tables</em>?
+        </p>
+        <ul class="choices" data-quiz="q21" data-answer="C">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>ci_cmdb</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>cmdb_ci</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>u_cmdb_ci</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>u_ci_cmdb</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q21')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q21')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q21">
+            <span class="ans-label">✅ คำตอบ: C. u_cmdb_ci</span>
+            <strong>u_</strong> = custom (user-created) + <strong>cmdb_ci</strong> = อยู่ใน CMDB hierarchy<br>
+            🔑 custom CMDB table → <code>u_cmdb_ci</code>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q22 -->
+<div class="q-card" id="q22">
+    <div class="q-head">
+        <span class="q-num">22</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Config</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Same application installed <em>more than once</em> on the <em>same server</em>. Which is the best <em>criterion attribute</em> for identification?
+        </p>
+        <ul class="choices" data-quiz="q22" data-answer="C">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Configuration File Name</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Class</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Configuration File Path</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Port</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="E"><span class="choice-label">E</span>Version</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q22')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q22')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q22">
+            <span class="ans-label">✅ คำตอบ: C. Configuration File Path</span>
+            App เดียวกัน install หลายครั้งบน server เดียว → ต้องแยกด้วย <strong>path</strong><br>
+            เช่น /opt/tomcat1/ vs /opt/tomcat2/ → Path ไม่ซ้ำกัน!<br>
+            ❌ Name, Class, Port, Version อาจซ้ำกันได้
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q23 -->
+<div class="q-card" id="q23">
+    <div class="q-head">
+        <span class="q-num">23</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Config</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            No match found using Tomcat identification rule. Which option must be checked to try <em>Application identification rule</em>?
+        </p>
+        <ul class="choices" data-quiz="q23" data-answer="D">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Criterion attributes</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Applies to</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Independent</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Allow fallback to parent's rules</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q23')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q23')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q23">
+            <span class="ans-label">✅ คำตอบ: D. Allow fallback to parent's rules</span>
+            Child rule (Tomcat) ไม่ match → ถอยกลับ → ลอง parent rule (Application)<br>
+            🔑 "no match" + "try parent" → <strong>Allow fallback to parent's rules</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q24 -->
+<div class="q-card" id="q24">
+    <div class="q-head">
+        <span class="q-num">24</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Config</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            What is the <em>relationship</em> between an application and a server?
+        </p>
+        <ul class="choices" data-quiz="q24" data-answer="D">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Application>Runs::Runs On>Server</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Application>Used by::Uses>Server</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Application>Uses::Used by>Server</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Application>Runs on::Runs>Server</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q24')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q24')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q24">
+            <span class="ans-label">✅ คำตอบ: D</span>
+            Application <strong>"Runs on"</strong> Server (แอปรันบนเซิร์ฟเวอร์)<br>
+            Server <strong>"Runs"</strong> Application (เซิร์ฟเวอร์รันแอป)
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- DIVIDER -->
+<div class="divider"></div>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║  SECTION 4: GOVERN                       ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+
+<div class="section-header s-govern" id="sec-govern">
+    <h2>🛡️ SECTION 4: Govern</h2>
+    <p class="section-desc">กำกับดูแลคุณภาพ – Health Dashboard, Policies, Data Certification</p>
+</div>
+
+<div class="summary-box">
+    <button class="collapse-btn open" onclick="toggleCollapse(this)">
+        <span class="arrow-icon">▶</span> สรุป Govern ที่ต้องจำ
+    </button>
+    <div class="collapse-content open">
+
+        <h3 style="color:var(--gold);margin:10px 0 8px;">📌 CMDB Health Dashboard – 3 Scorecards (3C's)</h3>
+        <table class="info-table">
+            <tr><th>Scorecard</th><th>วัดอะไร</th><th>Keyword</th></tr>
+            <tr><td>📊 <strong>Completeness</strong></td><td>ข้อมูลครบไหม?</td><td>missing key data</td></tr>
+            <tr><td>📋 <strong>Compliance</strong></td><td>ตามกฎไหม?</td><td>policy adherence</td></tr>
+            <tr><td>✅ <strong>Correctness</strong></td><td>ถูกต้องไหม?</td><td><strong>Duplicate, Orphan, Stale</strong></td></tr>
+        </table>
+
+        <h3 style="color:var(--gold);margin:16px 0 8px;">📌 Policy Types</h3>
+        <table class="info-table">
+            <tr><th>Policy</th><th>ทำอะไร</th></tr>
+            <tr><td><strong>Certification</strong></td><td>สร้าง task ให้ <strong>review + UPDATE fields</strong> ได้</td></tr>
+            <tr><td><strong>Attestation</strong></td><td>แค่ยืนยันว่าถูกต้อง (ไม่ได้แก้)</td></tr>
+            <tr><td><strong>Compliance</strong></td><td>ตรวจตาม policy</td></tr>
+            <tr><td><strong>Audit</strong></td><td>ตรวจเทียบกับข้อมูลจริง</td></tr>
+        </table>
+
+        <div class="kw-box" style="margin-top:12px;">
+            • Delete/Archive policy → ใช้กับ <code>End of Life - Retired</code> เท่านั้น!<br>
+            • Playbook ให้เอกสาร: <code>Problem Overview</code> + <code>Problem Analysis</code><br>
+            • Clean up duplicates → <code>de-duplication task module</code><br>
+            • Evaluated = จำนวนทั้งหมดใน scope, Healthy = จำนวนที่ผ่าน<br>
+            • Governance benefits → Enhanced Service Mgmt + Gain visibility/control<br>
+            • Create/manage policies → <code>CMDB Workspace Management tab</code>
+        </div>
+    </div>
+</div>
+
+<!-- Q25 -->
+<div class="q-card" id="q25">
+    <div class="q-head">
+        <span class="q-num">25</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Govern</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            The Admin needs <em>Duplicate CI</em>, <em>Orphan CI</em>, and <em>Stale CI</em> metrics.<br>
+            Which scorecard provides this?
+        </p>
+        <ul class="choices" data-quiz="q25" data-answer="C">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Compliance</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Completeness</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Correctness</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q25')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q25')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q25">
+            <span class="ans-label">✅ คำตอบ: C. Correctness</span>
+            🔑 "Duplicate" + "Orphan" + "Stale" → <strong>Correctness</strong> เสมอ!
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q26 -->
+<div class="q-card" id="q26">
+    <div class="q-head">
+        <span class="q-num">26</span>
+        <span class="q-tag tag-multi">MULTI ×2</span>
+        <span class="q-section-tag">Govern</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            How do CMDB <em>governance</em> tools help organizations? (Choose two.)
+        </p>
+        <ul class="choices" data-quiz="q26" data-answer="A,C" data-multi="true">
+            <li class="choice" onclick="toggleMulti(this)" data-v="A"><span class="choice-label">A</span>Enhanced Service Management operations</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="B"><span class="choice-label">B</span>Reduced hardware costs</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="C"><span class="choice-label">C</span>Gain visibility and control</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="D"><span class="choice-label">D</span>Assist integration choices</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkMulti('q26')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q26')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q26">
+            <span class="ans-label">✅ คำตอบ: A + C</span>
+            Governance benefits:<br>
+            1. <strong>Enhanced Service Management operations</strong><br>
+            2. <strong>Gain visibility and control</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q27 -->
+<div class="q-card" id="q27">
+    <div class="q-head">
+        <span class="q-num">27</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Govern</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Where does a Data Manager <em>create, publish, and manage policies</em> for CI lifecycle operations?
+        </p>
+        <ul class="choices" data-quiz="q27" data-answer="D">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>CI Class Manager</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>CMDB Workspace CMDB 360 tab</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Service Operations Workspace</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>CMDB Workspace Management tab</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q27')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q27')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q27">
+            <span class="ans-label">✅ คำตอบ: D. CMDB Workspace Management tab</span>
+            🔑 "create, publish, manage policies" + "lifecycle" → <strong>CMDB Workspace Management tab</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q28 -->
+<div class="q-card" id="q28">
+    <div class="q-head">
+        <span class="q-num">28</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Govern</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Which type of policy creates tasks that allow the assigned individual to <em>update fields</em> on the CI record?
+        </p>
+        <ul class="choices" data-quiz="q28" data-answer="D">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Compliance</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Attestation</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Audit</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Certification</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q28')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q28')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q28">
+            <span class="ans-label">✅ คำตอบ: D. Certification</span>
+            Certification → task ให้ review + <strong>UPDATE fields ได้</strong><br>
+            Attestation → แค่ยืนยัน (ไม่ได้แก้)<br>
+            🔑 "update fields" + "tasks" → <strong>Certification</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q29 -->
+<div class="q-card" id="q29">
+    <div class="q-head">
+        <span class="q-num">29</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Govern</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Tracking CIs <em>missing key data</em>. Which scorecard supports this?
+        </p>
+        <ul class="choices" data-quiz="q29" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Completeness</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Compliance</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Correctness</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q29')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q29')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q29">
+            <span class="ans-label">✅ คำตอบ: A. Completeness</span>
+            🔑 "missing key data" → <strong>Completeness</strong> (วัดว่าข้อมูลครบไหม)
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q30 -->
+<div class="q-card" id="q30">
+    <div class="q-head">
+        <span class="q-num">30</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Govern</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Correctness Scorecard shows Duplicate metric: Healthy CIs / Evaluated = <em>59,000 / 60,000</em>.<br>
+            What does this indicate about the scope?
+        </p>
+        <ul class="choices" data-quiz="q30" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>60,000 server records are in scope for this metric</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>1,000 server records are in scope for this metric</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>59,000 Linux and 60,000 Windows servers</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>59,000 server records are in scope</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q30')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q30')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q30">
+            <span class="ans-label">✅ คำตอบ: A. 60,000</span>
+            <strong>Evaluated = 60,000</strong> = จำนวนทั้งหมดใน scope<br>
+            <strong>Healthy = 59,000</strong> = จำนวนที่ผ่าน (ไม่ซ้ำ)<br>
+            1,000 = duplicate (60,000 - 59,000)
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q31 -->
+<div class="q-card" id="q31">
+    <div class="q-head">
+        <span class="q-num">31</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Govern</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Preferred way to <em>clean up CMDB duplicates</em>?
+        </p>
+        <ul class="choices" data-quiz="q31" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>The de-duplication task module</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>The de-duplication dashboard on the CMDB workspace</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>My Tasks in the Application Navigator</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q31')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q31')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q31">
+            <span class="ans-label">✅ คำตอบ: A. De-duplication task module</span>
+            🔑 "clean up duplicates" → <strong>de-duplication task module</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q32 -->
+<div class="q-card" id="q32">
+    <div class="q-head">
+        <span class="q-num">32</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Govern</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Implement <em>delete and archive policies</em> for servers in New York datacenter.<br>
+            In which <em>lifecycle state</em> would servers be affected?
+        </p>
+        <ul class="choices" data-quiz="q32" data-answer="B">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>In any lifecycle state</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>End of Life - Retired</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Inventory - Available</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Missing - Stolen</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q32')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q32')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q32">
+            <span class="ans-label">✅ คำตอบ: B. End of Life - Retired</span>
+            Delete/Archive policies → ใช้กับ CI ที่ <strong>หมดอายุแล้ว</strong> เท่านั้น!<br>
+            🔑 "delete/archive policy" → <strong>End of Life - Retired</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q33 -->
+<div class="q-card" id="q33">
+    <div class="q-head">
+        <span class="q-num">33</span>
+        <span class="q-tag tag-multi">MULTI ×2</span>
+        <span class="q-section-tag">Govern</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Which types of documentation can they expect in a <em>playbook</em> from CMDB Data Foundations Dashboard? (Choose two.)
+        </p>
+        <ul class="choices" data-quiz="q33" data-answer="B,D" data-multi="true">
+            <li class="choice" onclick="toggleMulti(this)" data-v="A"><span class="choice-label">A</span>Automated Remediations</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="B"><span class="choice-label">B</span>Problem Analysis</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="C"><span class="choice-label">C</span>Root Cause</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="D"><span class="choice-label">D</span>Problem Overview</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkMulti('q33')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q33')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q33">
+            <span class="ans-label">✅ คำตอบ: B + D</span>
+            Playbook ให้เอกสาร 2 ส่วน:<br>
+            1. <strong>Problem Overview</strong> - อธิบายปัญหา<br>
+            2. <strong>Problem Analysis</strong> - แนะนำวิธีวิเคราะห์และแก้ไข
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q34 -->
+<div class="q-card" id="q34">
+    <div class="q-head">
+        <span class="q-num">34</span>
+        <span class="q-tag tag-multi">MULTI ×2</span>
+        <span class="q-section-tag">Govern</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Data filter for certification policy:<br>
+            Table: Server [cmdb_ci_server]<br>
+            Filter: Operating System | <em>contains</em> | Server <strong>OR</strong> Operating System | <em>contains</em> | Linux<br><br>
+            Which operating systems are affected? (Choose two.)
+        </p>
+        <ul class="choices" data-quiz="q34" data-answer="A,C" data-multi="true">
+            <li class="choice" onclick="toggleMulti(this)" data-v="A"><span class="choice-label">A</span>Linux CentOS</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="B"><span class="choice-label">B</span>Windows 2019 Datacenter</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="C"><span class="choice-label">C</span>Windows Server 2022 Datacenter</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="D"><span class="choice-label">D</span>AIX</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkMulti('q34')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q34')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q34">
+            <span class="ans-label">✅ คำตอบ: A + C</span>
+            Filter ใช้ <strong>"contains"</strong>:<br>
+            • "Linux" → <strong>Linux</strong> CentOS ✅ (มีคำว่า Linux)<br>
+            • "Server" → Windows <strong>Server</strong> 2022 Datacenter ✅ (มีคำว่า Server)<br>
+            ❌ Windows 2019 Datacenter → ไม่มี "Server" หรือ "Linux"<br>
+            ❌ AIX → ไม่มี "Server" หรือ "Linux"
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- DIVIDER -->
+<div class="divider"></div>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║  SECTION 5: INSIGHT                      ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+
+<div class="section-header s-insight" id="sec-insight">
+    <h2>🔍 SECTION 5: Insight</h2>
+    <p class="section-desc">วิเคราะห์ข้อมูล – Data Foundations Dashboard, CMDB Workspace, Query Builder, Unified Map</p>
+</div>
+
+<div class="summary-box">
+    <button class="collapse-btn open" onclick="toggleCollapse(this)">
+        <span class="arrow-icon">▶</span> สรุป Insight ที่ต้องจำ
+    </button>
+    <div class="collapse-content open">
+        <table class="info-table">
+            <tr><th>Concept</th><th>Keyword จำ</th></tr>
+            <tr><td><strong>CMDB Data Foundations Dashboard</strong></td><td>configured per recommended practice → <strong>FREE</strong> from ServiceNow Store</td></tr>
+            <tr><td><strong>CMDB Workspace Actions</strong></td><td>Execute Discovery + Remediate duplicates</td></tr>
+            <tr><td><strong>CMDB Query Builder</strong></td><td>visual query ข้าม CMDB + non-CMDB tables (เช่น Incident)</td></tr>
+            <tr><td><strong>Unified Map Filter</strong></td><td>CI type + Business criticality</td></tr>
+            <tr><td><strong>Unified Map Side Panel</strong></td><td>Active Incidents + Planned Changes = Contextual side panel</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- Q35 -->
+<div class="q-card" id="q35">
+    <div class="q-head">
+        <span class="q-num">35</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Insight</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Need insights into how CMDB is <em>configured according to ServiceNow recommended practice</em>. Which tool?
+        </p>
+        <ul class="choices" data-quiz="q35" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>CMDB Data Foundation Dashboard</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>CMDB Workspace</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>CMDB Health Dashboard</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>CMDB Data Manager</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q35')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q35')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q35">
+            <span class="ans-label">✅ คำตอบ: A. CMDB Data Foundation Dashboard</span>
+            ⚠️ ไม่ใช่ Health Dashboard (อันนั้นวัด data quality)<br>
+            Data Foundation = ตรวจว่า <strong>config ตาม best practice</strong> หรือไม่
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q36 -->
+<div class="q-card" id="q36">
+    <div class="q-head">
+        <span class="q-num">36</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Insight</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            How is the CMDB and CSDM Data Foundations Dashboard <em>obtained</em>?
+        </p>
+        <ul class="choices" data-quiz="q36" data-answer="A">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>It is a free application on the ServiceNow Store.</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>It is active by default.</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>It is a paid application on the ServiceNow Store.</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>It is a free application on the ServiceNow Innovation Lab.</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q36')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q36')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q36">
+            <span class="ans-label">✅ คำตอบ: A. Free app on ServiceNow Store</span>
+            ต้อง install เอง (ไม่ได้ active by default), ไม่ต้องจ่ายเงิน
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q37 -->
+<div class="q-card" id="q37">
+    <div class="q-head">
+        <span class="q-num">37</span>
+        <span class="q-tag tag-multi">MULTI ×2</span>
+        <span class="q-section-tag">Insight</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            What <em>actions</em> can be initiated from the <em>CMDB Workspace</em>? (Choose two.)
+        </p>
+        <ul class="choices" data-quiz="q37" data-answer="A,C" data-multi="true">
+            <li class="choice" onclick="toggleMulti(this)" data-v="A"><span class="choice-label">A</span>Execute ServiceNow Discovery</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="B"><span class="choice-label">B</span>Create a CMDB Data Manager certification policy</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="C"><span class="choice-label">C</span>Remediate duplicate CI records</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="D"><span class="choice-label">D</span>Create a new CMDB class</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkMulti('q37')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q37')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q37">
+            <span class="ans-label">✅ คำตอบ: A + C</span>
+            CMDB Workspace actions:<br>
+            1. <strong>Execute Discovery</strong><br>
+            2. <strong>Remediate duplicates</strong><br>
+            ❌ สร้าง policy → ทำที่ Management tab<br>
+            ❌ สร้าง class → ทำที่ CI Class Manager
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q38 -->
+<div class="q-card" id="q38">
+    <div class="q-head">
+        <span class="q-num">38</span>
+        <span class="q-tag tag-multi">MULTI ×2</span>
+        <span class="q-section-tag">Insight</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            Which options are available in the <em>Unified Map filter panel</em>? (Choose two.)
+        </p>
+        <ul class="choices" data-quiz="q38" data-answer="B,D" data-multi="true">
+            <li class="choice" onclick="toggleMulti(this)" data-v="A"><span class="choice-label">A</span>Discovery source</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="B"><span class="choice-label">B</span>CI type</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="C"><span class="choice-label">C</span>Managed by group</li>
+            <li class="choice" onclick="toggleMulti(this)" data-v="D"><span class="choice-label">D</span>Business criticality</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkMulti('q38')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q38')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q38">
+            <span class="ans-label">✅ คำตอบ: B + D</span>
+            Unified Map filter panel:<br>
+            1. <strong>CI type</strong><br>
+            2. <strong>Business criticality</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+<!-- Q39 -->
+<div class="q-card" id="q39">
+    <div class="q-head">
+        <span class="q-num">39</span>
+        <span class="q-tag tag-mc">MC</span>
+        <span class="q-section-tag">Insight</span>
+    </div>
+    <div class="q-body">
+        <p class="q-text">
+            A Service Owner wants to view <em>Active Incidents</em> and <em>Planned Changes</em> on the <em>home node</em> of the Unified Map.<br>
+            Which work area?
+        </p>
+        <ul class="choices" data-quiz="q39" data-answer="B">
+            <li class="choice" onclick="selectChoice(this)" data-v="A"><span class="choice-label">A</span>Tool box</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="B"><span class="choice-label">B</span>Contextual side panel</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="C"><span class="choice-label">C</span>Content controls</li>
+            <li class="choice" onclick="selectChoice(this)" data-v="D"><span class="choice-label">D</span>Map</li>
+        </ul>
+        <div class="btn-group">
+            <button class="btn btn-check" onclick="checkAnswer('q39')">✅ ตรวจ</button>
+            <button class="btn btn-reset" onclick="resetQ('q39')">🔄 ใหม่</button>
+        </div>
+        <div class="explanation" id="exp-q39">
+            <span class="ans-label">✅ คำตอบ: B. Contextual side panel</span>
+            Contextual side panel = แผงด้านข้าง แสดง Active Incidents, Problems, Planned Changes<br>
+            🔑 "Active Incidents" + "Planned Changes" + "Unified Map" → <strong>Contextual side panel</strong>
+            <span class="ref">[1] CIS-DF.pdf</span>
+        </div>
+    </div>
+</div>
+
+
+<!-- DIVIDER -->
+<div class="divider"></div>
+
+
+<!-- ╔══════════════════════════════════════════╗ -->
+<!-- ║  🔑 MASTER CHEAT SHEET                   ║ -->
+<!-- ╚══════════════════════════════════════════╝ -->
+
+<div class="section-header s-cheat" id="sec-cheat">
+    <h2>🔑 Master Cheat Sheet – จำก่อนเข้าสอบ</h2>
+    <p class="section-desc">รวม Keyword สำคัญทุกหมวด ดูรอบเดียวก่อนสอบ!</p>
+</div>
+
+<div class="summary-box">
+    <h3>🏛️ CSDM Fundamentals</h3>
+    <div class="cheat">
+<span class="cheat-title">5 Domains:</span>
+• capabilities/redundancies/costs/investment → Design & Planning
+• technical services/monitoring/technology CIs → Service Delivery
+• business services/consumer/catalog/ownership → Consumption
+• base system tables/highest value → Foundation
+• SDLC/build pipeline → Build (ออกน้อย)
+
+<span class="cheat-title">Maturity:</span>
+Foundation → Crawl → Walk → Run → Fly
+⭐ Walk = BSO depend on Application Services
+
+<span class="cheat-title">Key Concepts:</span>
+• regulated data + Business App → Information Object
+• PII/PCI + audit → Business App + Information Object
+• sell/consume domain → BSO + Business Service
+• Business values → operational resiliency + streaming incident/change
+• Vulnerability + risk → App Services with Business App Relationships
+    </div>
+</div>
+
+<div class="summary-box">
+    <h3>📥 Ingest</h3>
+    <div class="cheat">
+• import set + vendor + dup → CMDBTransformUtil API
+• connector categories → Cloud + Observability
+• SCCM + fastest → Service Graph Connectors
+• customized + upgrade → skipped change
+• parent → child (specific) → Class Upgrade
+• IntegrationHub ETL → third-party + uses IRE
+• auto relationships → Discovery + Service Mapping
+    </div>
+</div>
+
+<div class="summary-box">
+    <h3>⚙️ Configuration</h3>
+    <div class="cheat">
+• central location class info → CI Class Manager
+• custom CMDB table prefix → u_cmdb_ci
+• same app multiple instances → Configuration File Path
+• no match try parent → Allow fallback to parent's rules
+• App runs on Server → Runs on :: Runs
+• Dynamic CI Group + Change → Affected CIs related list
+• CI selected on Incident → auto populate Assignment Group
+• CMDB 360/Multisource → multisource_enabled
+    </div>
+</div>
+
+<div class="summary-box">
+    <h3>🛡️ Govern</h3>
+    <div class="cheat">
+<span class="cheat-title">3C's Health Dashboard:</span>
+• missing key data → Completeness
+• policy adherence → Compliance
+• Duplicate/Orphan/Stale → Correctness
+
+<span class="cheat-title">Policy Types:</span>
+• update fields + tasks → Certification
+• just confirm → Attestation
+
+<span class="cheat-title">Others:</span>
+• governance benefits → Enhanced Service Mgmt + visibility/control
+• create/manage policies → CMDB Workspace Management tab
+• clean up dup → de-duplication task module
+• delete/archive → End of Life - Retired ONLY
+• playbook = Problem Overview + Problem Analysis
+• Evaluated = total in scope
+• contains "Server" or "Linux" → อ่าน OS ดีๆ!
+    </div>
+</div>
+
+<div class="summary-box">
+    <h3>🔍 Insight</h3>
+    <div class="cheat">
+• configured per recommended practice → Data Foundations Dashboard
+• Dashboard = FREE from ServiceNow Store (ไม่ active by default)
+• Workspace actions → Execute Discovery + Remediate duplicates
+• visual query cross tables → CMDB Query Builder
+• Unified Map filter → CI type + Business criticality
+• Active Incidents + Changes on map → Contextual side panel
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align:center;padding:40px 0 80px;color:var(--text3);font-size:0.85em;">
+    <p>📘 CIS-Data Foundation Exam Prep</p>
+    <p>รวม 39 ข้อ | 5 Sections | พร้อมเฉลย + คำอธิบายภาษาไทย</p>
+    <p style="margin-top:10px;font-size:1.2em;">ขอให้สอบผ่าน! 💪🎯</p>
+    <p style="margin-top:5px;color:var(--text3);font-size:0.75em;">อ้างอิง: [1] CIS-DF.pdf, [2] ServiceNow Learning Portal</p>
+</div>
+
+</div><!-- end main -->
+
+<!-- FLOATING ELEMENTS -->
+<div class="score-float">
+    <span class="score-num" id="scoreNum">0</span>
+    <span class="score-label"> / <span id="totalAnswered">0</span></span>
+</div>
+
+<a class="back-top" href="#top" title="กลับด้านบน">⬆</a>
+
+<div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<script>
+// ===== STATE =====
+let score = 0;
+let totalAnswered = 0;
+const answered = new Set();
+const TOTAL_Q = 39;
+
+function updateScore(qid, correct) {
+    if (answered.has(qid)) return;
+    answered.add(qid);
+    totalAnswered++;
+    if (correct) score++;
+    document.getElementById('scoreNum').textContent = score;
+    document.getElementById('totalAnswered').textContent = totalAnswered;
+    document.getElementById('progressFill').style.width = (totalAnswered/TOTAL_Q*100)+'%';
+}
+
+// ===== SINGLE CHOICE =====
+function selectChoice(el) {
+    const list = el.closest('.choices');
+    if (list.dataset.multi === 'true') return;
+    list.querySelectorAll('.choice').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function checkAnswer(qid) {
+    const list = document.querySelector(`[data-quiz="${qid}"]`);
+    const answer = list.dataset.answer;
+    const sel = list.querySelector('.choice.selected');
+    if (!sel) { alert('กรุณาเลือกคำตอบก่อน!'); return; }
+    const correct = sel.dataset.v === answer;
+    list.querySelectorAll('.choice').forEach(c => {
+        c.classList.add('disabled');
+        if (c.dataset.v === answer) c.classList.add('correct');
+        else if (c.classList.contains('selected')) c.classList.add('wrong');
+    });
+    updateScore(qid, correct);
+    document.getElementById('exp-'+qid).classList.add('show');
+}
+
+// ===== MULTI CHOICE =====
+function toggleMulti(el) {
+    el.classList.toggle('selected');
+}
+
+function checkMulti(qid) {
+    const list = document.querySelector(`[data-quiz="${qid}"]`);
+    const answers = list.dataset.answer.split(',');
+    const selected = [...list.querySelectorAll('.choice.selected')].map(c=>c.dataset.v);
+    if (!selected.length) { alert('กรุณาเลือกคำตอบก่อน!'); return; }
+    const correct = answers.length===selected.length && answers.every(a=>selected.includes(a));
+    list.querySelectorAll('.choice').forEach(c => {
+        c.classList.add('disabled');
+        if (answers.includes(c.dataset.v)) c.classList.add('correct');
+        else if (c.classList.contains('selected')) c.classList.add('wrong');
+    });
+    updateScore(qid, correct);
+    document.getElementById('exp-'+qid).classList.add('show');
+}
+
+// ===== RESET =====
+function resetQ(qid) {
+    const list = document.querySelector(`[data-quiz="${qid}"]`);
+    if (!list) return;
+    list.querySelectorAll('.choice').forEach(c => {
+        c.classList.remove('selected','correct','wrong','disabled');
+    });
+    document.getElementById('exp-'+qid).classList.remove('show');
+    if (answered.has(qid)) {
+        answered.delete(qid);
+        totalAnswered = Math.max(0, totalAnswered-1);
+        score = Math.max(0, score); // approximate
+        document.getElementById('scoreNum').textContent = score;
+        document.getElementById('totalAnswered').textContent = totalAnswered;
+        document.getElementById('progressFill').style.width = (totalAnswered/TOTAL_Q*100)+'%';
+    }
+}
+
+// ===== TOGGLE EXPLANATION =====
+function toggleExp(id) {
+    document.getElementById(id).classList.toggle('show');
+}
+
+// ===== COLLAPSIBLE =====
+function toggleCollapse(btn) {
+    btn.classList.toggle('open');
+    const content = btn.nextElementSibling;
+    content.classList.toggle('open');
+}
+
+// ===== SCROLL NAV HIGHLIGHT =====
+const sections = ['sec-csdm','sec-ingest','sec-config','sec-govern','sec-insight','sec-cheat'];
+const pills = document.querySelectorAll('.nav-pill');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 120) current = id;
+    });
+    pills.forEach(p => {
+        p.classList.remove('active');
+        if (p.getAttribute('href') === '#'+current) p.classList.add('active');
+    });
+});
+</script>
+
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
