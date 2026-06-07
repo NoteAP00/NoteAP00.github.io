@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1a1a2e">
+<title>CIS-DF Flashcards | สอบให้ผ่าน!</title>
+<style>
+/* ===== CSS RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f1a;--bg2:#1a1a2e;--bg3:#252540;--bg4:#2d2d4a;
+  --text:#e8e8f0;--text2:#b0b0c8;--text3:#7878a0;
+  --purple:#a855f7;--purple2:#7c3aed;--purple3:#6d28d9;
+  --green:#22c55e;--green2:#16a34a;--green-bg:rgba(34,197,94,.12);
+  --red:#ef4444;--red2:#dc2626;--red-bg:rgba(239,68,68,.12);
+  --orange:#f59e0b;--orange-bg:rgba(245,158,11,.12);
+  --blue:#3b82f6;--blue-bg:rgba(59,130,246,.12);
+  --cyan:#06b6d4;
+  --card-radius:20px;--btn-radius:14px;
+  --shadow:0 8px 32px rgba(0,0,0,.3);
+  --shadow2:0 4px 16px rgba(0,0,0,.2);
+}
+[data-theme="light"]{
+  --bg:#f0f0f5;--bg2:#ffffff;--bg3:#e8e8f0;--bg4:#d8d8e8;
+  --text:#1a1a2e;--text2:#4a4a6a;--text3:#8888a8;
+  --shadow:0 8px 32px rgba(0,0,0,.08);
+  --shadow2:0 4px 16px rgba(0,0,0,.05);
+  --green-bg:rgba(34,197,94,.08);
+  --red-bg:rgba(239,68,68,.08);
+  --orange-bg:rgba(245,158,11,.08);
+  --blue-bg:rgba(59,130,246,.08);
+}
+html{font-size:16px;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Thai",sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;min-height:100dvh;
+  line-height:1.6;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
+
+/* ===== LAYOUT ===== */
+.app{max-width:680px;margin:0 auto;padding:12px;padding-bottom:env(safe-area-inset-bottom,20px)}
+
+/* ===== HEADER ===== */
+.header{
+  text-align:center;padding:24px 16px 20px;
+  background:linear-gradient(135deg,var(--purple3),var(--purple));
+  border-radius:var(--card-radius);margin-bottom:16px;
+  position:relative;overflow:hidden;
+}
+.header::before{
+  content:'';position:absolute;top:-50%;right:-50%;
+  width:200%;height:200%;
+  background:radial-gradient(circle,rgba(255,255,255,.05) 0%,transparent 60%);
+}
+.header h1{font-size:clamp(1.3rem,4vw,1.8rem);font-weight:800;color:#fff;position:relative}
+.header p{font-size:clamp(.8rem,2.5vw,.95rem);color:rgba(255,255,255,.8);margin-top:4px;position:relative}
+
+/* ===== TOP CONTROLS ===== */
+.controls{
+  display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;
+  align-items:center;justify-content:center;
+}
+.ctrl-btn{
+  padding:8px 16px;border-radius:var(--btn-radius);border:2px solid var(--bg4);
+  background:var(--bg2);color:var(--text2);font-size:.82rem;
+  cursor:pointer;transition:all .2s;font-weight:600;
+  display:flex;align-items:center;gap:6px;
+  -webkit-tap-highlight-color:transparent;
+}
+.ctrl-btn:hover,.ctrl-btn:active{border-color:var(--purple);color:var(--purple);background:var(--bg3)}
+.ctrl-btn.active{border-color:var(--purple);color:#fff;background:var(--purple)}
+.ctrl-btn .emoji{font-size:1.1em}
+
+/* ===== STATS BAR ===== */
+.stats-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;
+}
+.stat-item{
+  background:var(--bg2);border-radius:14px;padding:12px 8px;text-align:center;
+  border:1px solid var(--bg3);
+}
+.stat-num{font-size:clamp(1.2rem,3.5vw,1.6rem);font-weight:800;display:block}
+.stat-num.total{color:var(--purple)}
+.stat-num.known{color:var(--green)}
+.stat-num.learning{color:var(--orange)}
+.stat-num.unseen{color:var(--text3)}
+.stat-lbl{font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+/* ===== PROGRESS BAR ===== */
+.progress-wrap{margin-bottom:16px;padding:0 4px}
+.progress-track{
+  height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;
+  position:relative;
+}
+.progress-fill{
+  height:100%;border-radius:4px;transition:width .5s ease;
+  background:linear-gradient(90deg,var(--green),var(--cyan));
+}
+.progress-text{
+  display:flex;justify-content:space-between;margin-top:6px;
+  font-size:.75rem;color:var(--text3);
+}
+
+/* ===== SECTION FILTER ===== */
+.section-filter{
+  display:flex;gap:6px;margin-bottom:16px;overflow-x:auto;
+  padding:4px 0;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.section-filter::-webkit-scrollbar{display:none}
+.section-chip{
+  padding:6px 14px;border-radius:20px;font-size:.78rem;
+  white-space:nowrap;cursor:pointer;font-weight:600;
+  border:2px solid var(--bg4);background:var(--bg2);color:var(--text3);
+  transition:all .2s;flex-shrink:0;
+  -webkit-tap-highlight-color:transparent;
+}
+.section-chip:hover{border-color:var(--purple)}
+.section-chip.active{background:var(--purple);color:#fff;border-color:var(--purple)}
+
+/* ===== FLASHCARD ===== */
+.card-container{perspective:1200px;margin-bottom:16px;min-height:320px}
+.flashcard{
+  position:relative;width:100%;min-height:320px;
+  transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,.2,.2,1);
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.flashcard.flipped{transform:rotateY(180deg)}
+.card-face{
+  position:absolute;top:0;left:0;width:100%;min-height:320px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:var(--card-radius);padding:28px 24px;
+  display:flex;flex-direction:column;
+  box-shadow:var(--shadow);overflow-y:auto;
+  max-height:70vh;
+}
+.card-front{
+  background:linear-gradient(145deg,var(--bg2),var(--bg3));
+  border:2px solid var(--bg4);
+}
+.card-back{
+  background:linear-gradient(145deg,#0d2818,#1a3a28);
+  border:2px solid var(--green2);
+  transform:rotateY(180deg);
+}
+[data-theme="light"] .card-back{
+  background:linear-gradient(145deg,#f0fdf4,#dcfce7);
+  border:2px solid var(--green2);
+}
+
+/* Card content */
+.card-section-tag{
+  display:inline-block;padding:4px 12px;border-radius:8px;
+  font-size:.7rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.8px;margin-bottom:12px;width:fit-content;
+}
+.tag-csdm{background:rgba(168,85,247,.15);color:var(--purple)}
+.tag-config{background:var(--blue-bg);color:var(--blue)}
+.tag-govern{background:var(--red-bg);color:var(--red)}
+.tag-ingest{background:var(--orange-bg);color:var(--orange)}
+.tag-insight{background:rgba(6,182,212,.12);color:var(--cyan)}
+
+.card-badge{
+  display:flex;align-items:center;gap:8px;margin-bottom:12px;
+}
+.card-badge .num{
+  font-size:.75rem;font-weight:700;color:var(--text3);
+}
+.card-freq{
+  display:inline-flex;align-items:center;gap:3px;
+  padding:3px 8px;border-radius:6px;font-size:.65rem;font-weight:700;
+}
+.freq-hot{background:rgba(239,68,68,.15);color:var(--red)}
+.freq-warm{background:rgba(245,158,11,.12);color:var(--orange)}
+.freq-normal{background:rgba(100,100,140,.12);color:var(--text3)}
+
+.card-question{
+  font-size:clamp(.95rem,3vw,1.15rem);font-weight:700;
+  line-height:1.5;flex:1;color:var(--text);
+}
+.card-hint{
+  margin-top:16px;padding:12px 16px;border-radius:12px;
+  background:rgba(168,85,247,.08);border-left:4px solid var(--purple);
+  font-size:.82rem;color:var(--text2);
+}
+.card-tap{
+  text-align:center;margin-top:16px;font-size:.75rem;
+  color:var(--text3);opacity:.7;
+}
+
+/* Back side */
+.answer-label{
+  font-size:.7rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:1px;color:var(--green);margin-bottom:8px;
+}
+.card-answer{
+  font-size:clamp(.95rem,3vw,1.15rem);font-weight:700;
+  color:#fff;line-height:1.5;margin-bottom:16px;
+}
+[data-theme="light"] .card-answer{color:#166534}
+.card-explain{
+  font-size:.85rem;color:rgba(255,255,255,.75);
+  line-height:1.6;padding:14px 16px;
+  background:rgba(255,255,255,.06);border-radius:12px;
+}
+[data-theme="light"] .card-explain{
+  color:#1a3a28;background:rgba(0,0,0,.04);
+}
+.card-explain .th-note{
+  display:block;margin-top:10px;padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.1);
+  font-weight:600;color:var(--green);
+}
+[data-theme="light"] .card-explain .th-note{
+  border-top-color:rgba(0,0,0,.1);color:var(--green2);
+}
+.card-table{
+  width:100%;border-collapse:collapse;margin:10px 0;font-size:.82rem;
+}
+.card-table th,.card-table td{
+  padding:8px 10px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1);
+}
+.card-table th{color:var(--green);font-weight:700;font-size:.72rem;text-transform:uppercase}
+[data-theme="light"] .card-table th{color:var(--green2)}
+[data-theme="light"] .card-table th,[data-theme="light"] .card-table td{
+  border-bottom-color:rgba(0,0,0,.08);
+}
+
+/* ===== NAVIGATION ===== */
+.nav-row{
+  display:flex;gap:8px;margin-bottom:12px;align-items:center;
+}
+.nav-btn{
+  flex:1;padding:14px 8px;border-radius:var(--btn-radius);
+  font-size:.9rem;font-weight:700;cursor:pointer;
+  border:2px solid var(--bg4);background:var(--bg2);
+  color:var(--text);transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  -webkit-tap-highlight-color:transparent;
+}
+.nav-btn:hover{border-color:var(--purple);background:var(--bg3)}
+.nav-btn:active{transform:scale(.97)}
+.nav-btn:disabled{opacity:.3;cursor:not-allowed}
+
+/* ===== RATING BUTTONS ===== */
+.rating-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  margin-bottom:16px;
+}
+.rate-btn{
+  padding:14px 8px;border-radius:var(--btn-radius);
+  font-size:.82rem;font-weight:700;cursor:pointer;
+  border:2px solid;transition:all .2s;text-align:center;
+  -webkit-tap-highlight-color:transparent;
+}
+.rate-btn:active{transform:scale(.95)}
+.rate-know{
+  border-color:var(--green2);background:var(--green-bg);color:var(--green);
+}
+.rate-know:hover{background:var(--green);color:#fff}
+.rate-learn{
+  border-color:var(--orange);background:var(--orange-bg);color:var(--orange);
+}
+.rate-learn:hover{background:var(--orange);color:#fff}
+.rate-skip{
+  border-color:var(--bg4);background:var(--bg2);color:var(--text3);
+}
+.rate-skip:hover{background:var(--bg4);color:var(--text)}
+
+/* ===== CHEAT SHEET ===== */
+.cheat-section{margin-top:24px}
+.cheat-toggle{
+  width:100%;padding:16px 20px;border-radius:var(--card-radius);
+  background:var(--bg2);border:2px solid var(--bg4);
+  color:var(--text);font-size:1rem;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;gap:8px;
+  transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.cheat-toggle:hover{border-color:var(--purple)}
+.cheat-toggle .arrow{transition:transform .3s;font-size:1.2em}
+.cheat-toggle.open .arrow{transform:rotate(180deg)}
+.cheat-content{
+  max-height:0;overflow:hidden;transition:max-height .4s ease;
+}
+.cheat-content.open{max-height:6000px}
+.cheat-box{
+  margin-top:12px;padding:20px;border-radius:var(--card-radius);
+  background:var(--bg2);border:1px solid var(--bg3);
+}
+.cheat-title{
+  font-size:1rem;font-weight:800;margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;
+}
+.cheat-grid{display:grid;gap:8px}
+.cheat-item{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  padding:10px 14px;border-radius:12px;
+  background:var(--bg3);font-size:.82rem;
+  align-items:center;
+}
+.cheat-item .key{color:var(--orange);font-weight:700}
+.cheat-item .val{color:var(--green);font-weight:600}
+
+/* ===== KEYBOARD SHORTCUTS INFO ===== */
+.shortcuts{
+  margin-top:16px;padding:16px;border-radius:14px;
+  background:var(--bg2);border:1px solid var(--bg3);
+  font-size:.78rem;color:var(--text3);text-align:center;
+}
+.shortcuts kbd{
+  padding:2px 8px;border-radius:6px;background:var(--bg4);
+  font-family:inherit;font-weight:700;color:var(--text2);
+  border:1px solid var(--text3);font-size:.75rem;
+}
+
+/* ===== THEME TOGGLE ===== */
+.theme-btn{
+  position:fixed;top:12px;right:12px;z-index:100;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--bg2);border:2px solid var(--bg4);
+  font-size:1.2rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;box-shadow:var(--shadow2);
+  -webkit-tap-highlight-color:transparent;
+}
+.theme-btn:hover{border-color:var(--purple)}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card-container{animation:slideIn .4s ease}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:400px){
+  .app{padding:8px}
+  .card-face{padding:20px 16px}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .controls{gap:6px}
+  .ctrl-btn{padding:7px 12px;font-size:.76rem}
+}
+@media(min-width:768px){
+  .card-face{min-height:360px}
+}
+
+/* ===== PRINT ===== */
+@media print{
+  body{background:#fff;color:#000}
+  .controls,.nav-row,.rating-row,.theme-btn,.shortcuts,.card-tap{display:none}
+  .flashcard{transform:none!important}
+  .card-face{position:relative;box-shadow:none;border:1px solid #ccc;break-inside:avoid}
+  .card-back{transform:none;display:block;margin-top:16px}
+}
+</style>
+</head>
+<body>
+<button class="theme-btn" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle Theme">🌙</button>
+
+<div class="app" id="app">
+<!-- HEADER -->
+<div class="header">
+  <h1>🎯 CIS-DF Flashcards</h1>
+  <p>Digital Foundations — จำไว สอบผ่าน!</p>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls" id="controls">
+  <button class="ctrl-btn active" onclick="setMode('all')" id="mode-all"><span class="emoji">📚</span> ทั้งหมด</button>
+  <button class="ctrl-btn" onclick="setMode('unseen')" id="mode-unseen"><span class="emoji">🆕</span> ยังไม่ดู</button>
+  <button class="ctrl-btn" onclick="setMode('learning')" id="mode-learning"><span class="emoji">🔄</span> ยังไม่แม่น</button>
+  <button class="ctrl-btn" onclick="setMode('known')" id="mode-known"><span class="emoji">✅</span> จำได้แล้ว</button>
+  <button class="ctrl-btn" onclick="shuffleCards()" id="btn-shuffle"><span class="emoji">🔀</span> สุ่ม</button>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar" id="stats-bar">
+  <div class="stat-item"><span class="stat-num total" id="s-total">0</span><span class="stat-lbl">ทั้งหมด</span></div>
+  <div class="stat-item"><span class="stat-num known" id="s-known">0</span><span class="stat-lbl">จำได้</span></div>
+  <div class="stat-item"><span class="stat-num learning" id="s-learning">0</span><span class="stat-lbl">ยังไม่แม่น</span></div>
+  <div class="stat-item"><span class="stat-num unseen" id="s-unseen">0</span><span class="stat-lbl">ยังไม่ดู</span></div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  <div class="progress-text"><span id="prog-label">0 / 0</span><span id="prog-pct">0%</span></div>
+</div>
+
+<!-- SECTION FILTER -->
+<div class="section-filter" id="section-filter"></div>
+
+<!-- FLASHCARD -->
+<div class="card-container" id="card-container">
+  <div class="flashcard" id="flashcard" onclick="flipCard()" role="button" tabindex="0" aria-label="Flip card">
+    <div class="card-face card-front" id="card-front"></div>
+    <div class="card-face card-back" id="card-back"></div>
+  </div>
+</div>
+
+<!-- RATING -->
+<div class="rating-row" id="rating-row">
+  <button class="rate-btn rate-know" onclick="rateCard('known')">✅ จำได้!</button>
+  <button class="rate-btn rate-learn" onclick="rateCard('learning')">🔄 ยังไม่แม่น</button>
+  <button class="rate-btn rate-skip" onclick="rateCard('unseen')">⏭ ข้าม</button>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav-row">
+  <button class="nav-btn" onclick="prevCard()" id="btn-prev">⬅ ก่อนหน้า</button>
+  <button class="nav-btn" onclick="flipCard()" id="btn-flip">🔄 พลิกการ์ด</button>
+  <button class="nav-btn" onclick="nextCard()" id="btn-next">ถัดไป ➡</button>
+</div>
+
+<!-- CHEAT SHEET -->
+<div class="cheat-section">
+  <button class="cheat-toggle" onclick="toggleCheat()" id="cheat-toggle">
+    <span>📋</span>
+    <span>สูตรลัด "เห็นคำนี้ → ตอบอันนี้"</span>
+    <span class="arrow" style="margin-left:auto">▼</span>
+  </button>
+  <div class="cheat-content" id="cheat-content">
+    <div class="cheat-box">
+      <div class="cheat-title">🎯 Quick Match — เห็นปุ๊บ ตอบปั๊บ!</div>
+      <div class="cheat-grid" id="cheat-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SHORTCUTS -->
+<div class="shortcuts">
+  ⌨️ <kbd>Space</kbd> พลิกการ์ด &nbsp;|&nbsp;
+  <kbd>←</kbd> ก่อนหน้า &nbsp;|&nbsp;
+  <kbd>→</kbd> ถัดไป &nbsp;|&nbsp;
+  <kbd>1</kbd> จำได้ &nbsp;|&nbsp;
+  <kbd>2</kbd> ยังไม่แม่น &nbsp;|&nbsp;
+  <kbd>3</kbd> ข้าม
+</div>
+
+</div><!-- /app -->
+
+<script>
+// ============================================================
+// FLASHCARD DATA — 56 การ์ดสำคัญที่สุด (เรียงตามความถี่ออกสอบ)
+// ============================================================
+const CARDS = [
+// ---------- GROUP A: ออกซ้ำมากที่สุด ----------
+{
+  id:1, section:"Configuration", freq:"hot", stars:5,
+  q:"ตั้งค่า Principal Class ที่ไหน? ทำอย่างไร?",
+  hint:"ออกสอบ 5 ครั้ง! ข้อนี้ต้องตอบได้ทันที",
+  a:"CI Class Manager > Class Info > Basic Info > ติ๊ก checkbox \"Principal Class\"",
+  explain:"Principal Class = กำหนดว่า CI class ไหนจะโผล่ให้เลือกในฟอร์ม Incident/Problem/Change → ถ้าไม่ติ๊ก จะไม่เห็น CI class นั้นในตัวเลือก",
+  th:"จำง่าย: \"Principal = ผอ. = อยู่ใน Basic Info = ข้อมูลพื้นฐาน\""
+},
+{
+  id:2, section:"Govern", freq:"hot", stars:5,
+  q:"Attestation กับ Certification policy ต่างกันอย่างไร?",
+  hint:"ออกสอบ 4+ ครั้ง! คู่แฝดที่ชอบออก",
+  a:"Attestation = ยืนยันว่า CI ยังมีอยู่จริง\nCertification = ตรวจสอบ + แก้ไขค่า attribute บน CI",
+  explain:"Attestation = \"ยังอยู่ไหม?\" | Certification = \"ข้อมูลถูกไหม ถ้าไม่ถูกแก้ด้วย\"",
+  th:"เห็น 'still exist' = Attestation | เห็น 'update fields / validate' = Certification"
+},
+{
+  id:3, section:"CSDM Fundamentals", freq:"hot", stars:5,
+  q:"CSDM rollout order (ลำดับการ rollout) คืออะไร?",
+  hint:"ออกสอบ 2+ ครั้ง!",
+  a:"Foundation → Crawl → Walk → Run → Fly",
+  explain:"เหมือนเด็กทารก: วางรากฐาน → คลาน → เดิน → วิ่ง → บิน",
+  th:"จำ 5 ขั้น: F-C-W-R-F = Foundation Crawl Walk Run Fly"
+},
+{
+  id:4, section:"Govern", freq:"hot", stars:5,
+  q:"Staleness metric ใช้ field อะไรคำนวณ? ค่า default กี่วัน?",
+  hint:"ออกซ้ำ 2+ ครั้ง!",
+  a:"Field = last_discovery (Most recent discovery)\nDefault = 30 วัน",
+  explain:"Stale = เก่า = ดูครั้งสุดท้ายที่ถูก discover ถ้า 30 วันไม่เจอ = ถือว่าเก่า",
+  th:"Staleness = last_discovery = 30 days"
+},
+{
+  id:5, section:"Govern", freq:"hot", stars:5,
+  q:"Duplicate CI Remediator → Main CI เลือกจากเกณฑ์อะไร 2 ข้อ?",
+  hint:"จำคู่นี้ให้ขึ้นใจ",
+  a:"Oldest Created (สร้างก่อน) + Most Related Items (มี relationship มากสุด)",
+  explain:"ตัวหลัก = แก่ที่สุด + เพื่อนมากที่สุด",
+  th:"Main CI = Oldest + Most Related"
+},
+{
+  id:6, section:"Ingest", freq:"hot", stars:5,
+  q:"ถ้า customize SGC mappings → ผลคือ? ถ้า upgrade → เกิดอะไร?",
+  hint:"ออก 2+ ครั้ง!",
+  a:"Customize → Customer responsible (SN ไม่ support)\nUpgrade → Skipped change (ระบบข้ามไม่แก้ customization)",
+  explain:"แก้เอง = รับผิดชอบเอง | อัปเกรด = ข้ามไม่แตะ",
+  th:"SGC custom = customer responsible + skipped on upgrade"
+},
+{
+  id:7, section:"Ingest", freq:"hot", stars:4,
+  q:"Server → Windows Server ผ่าน IRE → เรียกว่าอะไร?",
+  hint:"ออก 2 ครั้ง",
+  a:"Class Upgrade",
+  explain:"จาก class กว้าง (parent) → class เฉพาะ (child) = อัปเกรด เหมือนเลื่อนขั้น",
+  th:"parent → child = Class Upgrade"
+},
+{
+  id:8, section:"Configuration", freq:"hot", stars:4,
+  q:"ใส่ Dynamic CI Group ใน field ไหนบน Change form? แล้วเกิดอะไร?",
+  hint:"ออก 2+ ครั้ง!",
+  a:"ใส่ใน Configuration Item field → ระบบแสดง CIs ใน Affected CIs related list",
+  explain:"Config Item รับ Dynamic group → กระจายออกมาเป็น Affected CIs",
+  th:"Dynamic CI Group → Config Item → Affected CIs"
+},
+
+// ---------- GROUP B: CMDB Health Dashboard ----------
+{
+  id:9, section:"Govern", freq:"hot", stars:5,
+  q:"CMDB Health Dashboard มี 3 KPIs อะไร? แต่ละอันวัดอะไร?",
+  hint:"ออกหลายรูปแบบ ต้องจำให้ได้",
+  a:"Correctness = Duplicate, Orphan, Stale, Audit\nCompliance = Certify (Certification)\nCompleteness = Required fields, Recommended fields",
+  explain:"Correctness=ถูกต้องไหม | Compliance=ทำตามกฎไหม | Completeness=ครบไหม",
+  th:"3C: Correctness(ซ้ำ/กำพร้า/เก่า) + Compliance(Certify) + Completeness(Required)"
+},
+{
+  id:10, section:"Govern", freq:"warm", stars:4,
+  q:"เริ่มใช้ CMDB Health Dashboard ต้องทำอะไรก่อน?",
+  hint:"",
+  a:"Activate scheduled jobs (เปิด scheduled jobs)",
+  explain:"Dashboard ไม่ได้เปิดเอง ต้องสั่งตั้งเวลาให้มันทำงาน",
+  th:"Health Dashboard = activate scheduled jobs"
+},
+{
+  id:11, section:"Govern", freq:"warm", stars:4,
+  q:"Health Inclusion Rules ทำหน้าที่อะไร?",
+  hint:"อธิบายว่าทำไม 60k vs 50k ต่างกัน",
+  a:"จำกัดขอบเขต (narrow scope) ของ CIs ที่ถูกประเมินในแต่ละ metric",
+  explain:"Inclusion Rule = กฎว่าใครจะถูกวัด → ทำให้จำนวน CIs ที่ evaluate ต่างกันได้",
+  th:"Health Inclusion = narrow scope = filter ว่า CI ไหนจะถูกประเมิน"
+},
+{
+  id:12, section:"Govern", freq:"warm", stars:3,
+  q:"ต้องการ Health score เฉพาะภูมิภาค → ทำอย่างไร?",
+  hint:"",
+  a:"Create CMDB groups with type = Health กรอง by region",
+  explain:"CMDB group แบบ Health = แบ่งคะแนนตามกลุ่ม/ภูมิภาค",
+  th:"Regional score = CMDB groups type=Health"
+},
+
+// ---------- GROUP C: CMDB Data Manager ----------
+{
+  id:13, section:"Govern", freq:"hot", stars:5,
+  q:"CMDB Data Manager มีกี่ policy types? อะไรบ้าง?",
+  hint:"ข้อนี้ออกหลายรูปแบบ",
+  a:"5 ประเภท: Retire, Archive, Attestation, Certification, Delete",
+  explain:"R-A-A-C-D = เกษียณ-เก็บ-ยืนยัน-รับรอง-ลบ",
+  th:"5 policies: Retire Archive Attestation Certification Delete"
+},
+{
+  id:14, section:"Govern", freq:"hot", stars:5,
+  q:"CI ต้องอยู่สถานะอะไรก่อน archive/delete ได้?",
+  hint:"",
+  a:"Retired + End of Life",
+  explain:"ต้องเกษียณก่อน → แล้วค่อยทิ้ง/เก็บ",
+  th:"ก่อน archive/delete = Retired + End of Life"
+},
+{
+  id:15, section:"Govern", freq:"warm", stars:4,
+  q:"Data Manager policy task assignment → ควรใช้ field ไหน?",
+  hint:"ออก 2+ ครั้ง",
+  a:"Managed By Group",
+  explain:"ค่าที่ตั้งใน CI Class Manager = ใครดูแล class นั้น = คนรับ task",
+  th:"DM policy task = Managed By Group"
+},
+{
+  id:16, section:"Govern", freq:"warm", stars:4,
+  q:"Data Manager tasks ดูที่ไหน? Health Dashboard tasks ดูที่ไหน?",
+  hint:"จำคู่นี้อย่าสลับกัน!",
+  a:"DM policy tasks → CMDB Workspace > Management tab\nHealth Dashboard tasks → CMDB Workspace > My Work tab",
+  explain:"DM = Management tab | Health = My Work tab",
+  th:"Management tab = DM | My Work tab = Health Dashboard"
+},
+{
+  id:17, section:"Govern", freq:"warm", stars:3,
+  q:"ลบ CI ออกแต่กู้คืนได้ = policy อะไร? ลบถาวร?",
+  hint:"",
+  a:"กู้คืนได้ = Archive\nลบถาวร = Delete",
+  explain:"Archive = เก็บเข้ากล่อง (หยิบกลับได้) | Delete = ทิ้งถังขยะ",
+  th:"restorable = Archive | permanent = Delete"
+},
+
+// ---------- GROUP D: Configuration ----------
+{
+  id:18, section:"Configuration", freq:"hot", stars:4,
+  q:"Custom CMDB table ต้องเริ่มด้วย prefix อะไร?",
+  hint:"",
+  a:"u_cmdb_ci",
+  explain:"u_ = user-created | cmdb_ci = ตาราง CMDB CI | รวม = u_cmdb_ci",
+  th:"custom table = u_cmdb_ci"
+},
+{
+  id:19, section:"Configuration", freq:"hot", stars:4,
+  q:"เลือก CI บน Incident form → field ไหน auto-populate?",
+  hint:"ออก 2+ ครั้ง",
+  a:"Assignment Group",
+  explain:"เลือก CI → ระบบรู้ว่าใครรับผิดชอบ → ใส่ Assignment Group ให้เลย",
+  th:"CI selected → Assignment Group auto"
+},
+{
+  id:20, section:"Configuration", freq:"warm", stars:4,
+  q:"Support Group บน CI auto-populate → ตั้งค่าจากไหน?",
+  hint:"",
+  a:"Technology Management Service Offering (Technical Service Offering / TSO)",
+  explain:"TSO ส่ง Support Group ให้ CI อัตโนมัติ",
+  th:"support group auto = TSO"
+},
+{
+  id:21, section:"Configuration", freq:"warm", stars:3,
+  q:"CI Class Manager vs TSO ตั้ง Managed By Group → ใครชนะ?",
+  hint:"",
+  a:"TSO ชนะ CI Class Manager (TSO takes precedence)",
+  explain:"TSO > CI Class Manager เสมอสำหรับ Managed By Group",
+  th:"TSO > CI Class Manager"
+},
+{
+  id:22, section:"Configuration", freq:"warm", stars:4,
+  q:"Tomcat ไม่เจอ match → ลองใช้ Application rule → ติ๊กอะไร?",
+  hint:"",
+  a:"Allow fallback to parent's rules",
+  explain:"ลูกหาไม่เจอ → ถอยกลับไปถามพ่อแม่ = fallback to parent",
+  th:"child fail → fallback to parent's rules"
+},
+{
+  id:23, section:"Configuration", freq:"warm", stars:3,
+  q:"Added tab ใน CI Class Manager แสดงอะไร?",
+  hint:"",
+  a:"Attributes ที่สร้างตรงบน class นั้น (ไม่ใช่ inherited จาก parent)",
+  explain:"Added = เพิ่มเอง ≠ สืบทอดมา",
+  th:"Added tab = created on THIS class only"
+},
+{
+  id:24, section:"Configuration", freq:"normal", stars:3,
+  q:"CI Class Owner จัดการ class บ่อยๆ → ใช้ feature อะไร?",
+  hint:"",
+  a:"Pinned Classes",
+  explain:"ปักหมุด = Pin = เข้าถึงเร็ว",
+  th:"quick access = Pinned Classes"
+},
+{
+  id:25, section:"Configuration", freq:"warm", stars:4,
+  q:"Ingest custom CIs → best practice? (2 ข้อ)",
+  hint:"",
+  a:"1. Extend existing CI class\n2. Install CMDB CI Class Models store app (ดูว่ามี class ที่ต้องการอยู่แล้วหรือยัง)",
+  explain:"ต่อยอดของเดิม + หาในร้านค้าก่อน อย่าสร้างใหม่เปล่าๆ",
+  th:"custom CI = Extend + CI Class Models app"
+},
+{
+  id:26, section:"Configuration", freq:"warm", stars:3,
+  q:"เปิด CMDB 360/Multisource → property อะไร?",
+  hint:"",
+  a:"glide.identification_engine.multisource_enabled",
+  explain:"multisource = หลายแหล่ง → property มีคำว่า multisource_enabled",
+  th:"CMDB 360 = multisource_enabled"
+},
+{
+  id:27, section:"Configuration", freq:"normal", stars:3,
+  q:"Assigned to จาก CI → Asset อัตโนมัติ → ใช้อะไร?",
+  hint:"",
+  a:"Asset-CI Field Mapping module",
+  explain:"CI กับ Asset sync field = Asset-CI Field Mapping ไม่ต้องเขียน script",
+  th:"CI↔Asset field sync = Asset-CI Field Mapping"
+},
+{
+  id:28, section:"Configuration", freq:"normal", stars:3,
+  q:"สร้าง custom CI class → ต้องมี role อะไร?",
+  hint:"",
+  a:"sn_cmdb_admin + personalize_dictionary",
+  explain:"admin CMDB + สิทธิ์แก้ dictionary = สร้าง class ใหม่ได้",
+  th:"create class = sn_cmdb_admin + personalize_dictionary"
+},
+{
+  id:29, section:"Configuration", freq:"normal", stars:3,
+  q:"เพิ่ม/ลบ Principal Class → ต้องมี role อะไร? (2 ข้อ)",
+  hint:"",
+  a:"sn_cmdb_admin + sn_csdm_admin",
+  explain:"ต้องมี admin ทั้ง CMDB และ CSDM",
+  th:"Principal Class roles = sn_cmdb_admin + sn_csdm_admin"
+},
+
+// ---------- GROUP E: Ingest ----------
+{
+  id:30, section:"Ingest", freq:"hot", stars:4,
+  q:"Import Windows data จาก SCCM แบบเร็วที่สุด → ใช้อะไร?",
+  hint:"ออก 2+ ครั้ง",
+  a:"SCCM Service Graph Connector",
+  explain:"SGC = prebuilt = เร็วสุด = fastest time to value",
+  th:"SCCM fastest = SGC"
+},
+{
+  id:31, section:"Ingest", freq:"hot", stars:5,
+  q:"Reconciliation Priority: 100, 200, 300 → ใครมีอำนาจสูงสุด?",
+  hint:"ออก 2+ ครั้ง! ระวังหลอก",
+  a:"เลขน้อย = อำนาจสูง → Priority 100 สูงสุด\n• ทุกแหล่ง INSERT ได้ (สร้างใหม่ได้หมด)\n• แหล่งอำนาจต่ำ UPDATE แหล่งอำนาจสูงกว่าไม่ได้",
+  explain:"เลขน้อย = ใหญ่กว่า | ทุกคนสร้างได้ แต่ตัวเล็กแก้ตัวใหญ่ไม่ได้",
+  th:"lower # = higher authority | all can INSERT | can't UPDATE higher"
+},
+{
+  id:32, section:"Ingest", freq:"warm", stars:3,
+  q:"ACC (Agent Client Collector) ใช้กับอะไร? (2 ข้อ)",
+  hint:"",
+  a:"Secure environments + Intermittent network devices",
+  explain:"ACC = Agent ติดเครื่อง → เหมาะกับเครือข่ายไม่เสถียร + พื้นที่ปลอดภัยสูง",
+  th:"ACC = secure + intermittent"
+},
+{
+  id:33, section:"Ingest", freq:"warm", stars:3,
+  q:"Warranty expiration (ค้นหาด้วย Discovery ไม่ได้) → maintain อย่างไร?",
+  hint:"",
+  a:"Scheduled data import จาก external source",
+  explain:"Discovery หาไม่ได้ → ต้องนำเข้าตามเวลาจากแหล่งภายนอก",
+  th:"non-discoverable = scheduled import"
+},
+{
+  id:34, section:"Ingest", freq:"warm", stars:4,
+  q:"IntegrationHub ETL ทำอะไร? (2 ข้อ)",
+  hint:"",
+  a:"1. Integrates 3rd party data into CMDB\n2. Uses IRE (ป้องกันซ้ำ)",
+  explain:"ETL = ดูดข้อมูลภายนอก + ผ่าน IRE เสมอ = วิธีที่ recommend ที่สุด",
+  th:"ETL = 3rd party data + uses IRE"
+},
+{
+  id:35, section:"Ingest", freq:"warm", stars:3,
+  q:"Import set → ป้องกัน duplicate → ใช้อะไร?",
+  hint:"",
+  a:"CMDBTransformUtil API ใน transform script",
+  explain:"ส่ง import data ผ่าน IRE ด้วย CMDBTransformUtil",
+  th:"import set dup prevention = CMDBTransformUtil"
+},
+{
+  id:36, section:"Ingest", freq:"warm", stars:3,
+  q:"Import set + transform map → script type อะไรให้ผ่าน IRE?",
+  hint:"",
+  a:"onBefore script",
+  explain:"ก่อน (Before) จะเข้า CMDB → ต้องผ่าน IRE ก่อน = onBefore",
+  th:"transform map IRE = onBefore"
+},
+{
+  id:37, section:"Ingest", freq:"warm", stars:3,
+  q:"Dynamic Reconciliation Rule Types มีอะไร? (2 ข้อ)",
+  hint:"",
+  a:"Most Reported + Smallest Value (+ Largest Value)",
+  explain:"Dynamic = อัตโนมัติเลือก ค่าที่รายงานมากสุด / น้อยสุด / มากสุด",
+  th:"Dynamic rules = Most Reported + Smallest Value"
+},
+{
+  id:38, section:"Ingest", freq:"normal", stars:3,
+  q:"แหล่งหลักหยุดทำงาน → แหล่งรอง update แทนได้ → ใช้อะไร?",
+  hint:"",
+  a:"Data Refresh Rules",
+  explain:"พี่ใหญ่หายไป → Data Refresh ให้น้องขึ้นมาแทน",
+  th:"fallback after inactivity = Data Refresh Rules"
+},
+{
+  id:39, section:"Ingest", freq:"normal", stars:3,
+  q:"SGC Central plugin → อยู่ workspace ไหน?",
+  hint:"",
+  a:"CMDB Workspace",
+  explain:"SGC Central tab อยู่ใน CMDB Workspace",
+  th:"SGC Central = CMDB Workspace"
+},
+{
+  id:40, section:"Ingest", freq:"normal", stars:2,
+  q:"SGC categories มีอะไร? (2 ข้อ)",
+  hint:"",
+  a:"Cloud + Observability",
+  explain:"SGC = Cloud (คลาวด์) + Observability (สังเกตการณ์)",
+  th:"SGC categories = Cloud + Observability"
+},
+{
+  id:41, section:"Ingest", freq:"normal", stars:3,
+  q:"Dynamic reconciliation rules ต้องเปิด feature อะไร?",
+  hint:"",
+  a:"CMDB 360/Multisource CMDB",
+  explain:"Dynamic rules ต้องมี Multisource เก็บค่าจากหลายแหล่ง",
+  th:"dynamic rules need = CMDB 360/Multisource"
+},
+
+// ---------- GROUP F: Insight ----------
+{
+  id:42, section:"Insight", freq:"hot", stars:4,
+  q:"ดู CI relationships → ใช้อะไร? อยู่ที่ไหน?",
+  hint:"",
+  a:"Unified Map อยู่ใน CMDB Workspace",
+  explain:"Unified Map = แผนที่ CI แสดงความสัมพันธ์",
+  th:"CI connections = Unified Map = CMDB Workspace"
+},
+{
+  id:43, section:"Insight", freq:"warm", stars:4,
+  q:"ดู incidents/problems ของ CI บน Unified Map → panel ไหน?",
+  hint:"",
+  a:"Related items panel (Contextual side panel)",
+  explain:"Related items = แผงข้าง แสดง incidents, problems, changes ที่เกี่ยว",
+  th:"incidents on map = Related items / Contextual side panel"
+},
+{
+  id:44, section:"Insight", freq:"warm", stars:3,
+  q:"Unified Map vs Service Mapping → Unified Map ทำอะไรเพิ่มได้? (2 ข้อ)",
+  hint:"",
+  a:"1. Modify levels displayed (ปรับจำนวนชั้นที่แสดง)\n2. Filter nodes by preferences (กรอง node ตามที่ต้องการ)",
+  explain:"Unified Map = ปรับ level + filter nodes ได้",
+  th:"Unified Map extra = modify levels + filter nodes"
+},
+{
+  id:45, section:"Insight", freq:"warm", stars:4,
+  q:"CMDB Data Foundations Dashboard → หาที่ไหน? ราคา?",
+  hint:"",
+  a:"FREE app บน ServiceNow Store",
+  explain:"ฟรี ดาวน์โหลดจาก SN Store",
+  th:"Data Foundations Dashboard = FREE on SN Store"
+},
+{
+  id:46, section:"Insight", freq:"warm", stars:3,
+  q:"Query Builder ใช้ Incident table → ทำอย่างไร?",
+  hint:"",
+  a:"เพิ่ม Incident จาก Non-CMDB Tables list",
+  explain:"Incident ไม่ใช่ CMDB table → ต้องเพิ่มจาก Non-CMDB Tables",
+  th:"Incident in QB = Non-CMDB Tables"
+},
+{
+  id:47, section:"Insight", freq:"warm", stars:3,
+  q:"CMDB 360 ใช้ทำอะไร? ข้อมูลต้องเป็นอย่างไร?",
+  hint:"",
+  a:"ใช้ identify CI attributes จากหลาย data sources\nข้อมูลต้องผ่าน IRE",
+  explain:"360 = ดูค่าจากหลายแหล่ง + data ต้องเข้า IRE",
+  th:"CMDB 360 = identify from multiple sources + must go through IRE"
+},
+{
+  id:48, section:"Insight", freq:"warm", stars:3,
+  q:"Event Management + CMDB → ได้ประโยชน์อะไร? (2 ข้อ)",
+  hint:"",
+  a:"1. Mapped services → business impact visibility\n2. Binding alerts to specific CIs",
+  explain:"Event = ผูก alert กับ CI + เห็นผลกระทบธุรกิจ",
+  th:"Event Mgmt = business impact + bind alerts to CIs"
+},
+
+// ---------- GROUP G: CSDM Domains ----------
+{
+  id:49, section:"CSDM Fundamentals", freq:"hot", stars:5,
+  q:"Information Object คืออะไร? ใช้เมื่อไร?",
+  hint:"ออก 3+ ครั้ง!",
+  a:"Logical data ที่เชื่อมกับ Business Application เช่น PII, PCI, regulated data",
+  explain:"เห็นคำว่า PII / PCI / patient data / regulated data → คำตอบ = Information Object เสมอ",
+  th:"PII / PCI / regulated → Information Object"
+},
+{
+  id:50, section:"CSDM Fundamentals", freq:"warm", stars:4,
+  q:"Legacy status → CSDM life cycle → ใช้ตารางอะไร?",
+  hint:"",
+  a:"life_cycle_mapping table (pre-populated)",
+  explain:"สถานะเก่า → สถานะใหม่ = mapping = ตาราง life_cycle_mapping",
+  th:"legacy → CSDM = life_cycle_mapping"
+},
+{
+  id:51, section:"CSDM Fundamentals", freq:"warm", stars:3,
+  q:"Playbook documentation มีอะไร? (2 ข้อ)",
+  hint:"",
+  a:"Problem Overview + Problem Analysis",
+  explain:"Playbook = ภาพรวมปัญหา + วิเคราะห์ปัญหา",
+  th:"Playbook = Problem Overview + Problem Analysis"
+},
+{
+  id:52, section:"CSDM Fundamentals", freq:"warm", stars:4,
+  q:"CSDM domain: Sell/Consume → ใช้ tables อะไร?",
+  hint:"",
+  a:"Business Service + Business Service Offering",
+  explain:"ขาย/ใช้บริการ = Business Service + BSO",
+  th:"Sell/Consume = Business Service + BSO"
+},
+{
+  id:53, section:"CSDM Fundamentals", freq:"warm", stars:3,
+  q:"Walk stage → ทำอะไรได้?",
+  hint:"",
+  a:"Tech Service + Technical Service Offering (TSO) → เริ่ม organize services, impact assessment",
+  explain:"Walk = เดิน = เริ่ม organize → TSO populate support group + impact assessment",
+  th:"Walk = TSO + impact assessment"
+},
+{
+  id:54, section:"Govern", freq:"warm", stars:3,
+  q:"De-duplication bulk → ใช้อะไร? ทีละข้อ → ใช้อะไร?",
+  hint:"",
+  a:"Bulk = De-duplication Template\nทีละข้อ = Duplicate CI Remediator (wizard)",
+  explain:"bulk = template | individual = wizard remediator",
+  th:"bulk dup = Template | individual = Remediator wizard"
+},
+{
+  id:55, section:"Govern", freq:"warm", stars:3,
+  q:"Data Quality ของ CI ใช้อะไร ensure?",
+  hint:"",
+  a:"Data Quality Business Rule",
+  explain:"Business Rule ที่ enforce validation logic บน CI records",
+  th:"CI data quality = Data Quality Business Rule"
+},
+{
+  id:56, section:"Govern", freq:"warm", stars:3,
+  q:"CMDB governance → critical success factor?",
+  hint:"",
+  a:"Clear governance + continuous health monitoring",
+  explain:"Governance ชัดเจน + monitor สุขภาพ CMDB อย่างต่อเนื่อง",
+  th:"CMDB success = governance + monitoring"
+}
+];
+
+// ============================================================
+// CHEAT SHEET DATA
+// ============================================================
+const CHEAT = [
+["still exist / ยังอยู่ไหม","Attestation"],
+["update fields / validate","Certification"],
+["restorable / กู้คืนได้","Archive"],
+["permanent delete","Delete"],
+["PII / PCI / regulated","Information Object"],
+["fastest / SCCM","Service Graph Connector"],
+["customized SGC","customer responsible"],
+["SGC upgrade + custom","skipped change"],
+["parent → child class","Class Upgrade"],
+["warranty / non-discoverable","scheduled data import"],
+["secure / intermittent","ACC"],
+["lower priority #","higher authority"],
+["Basic Info tab","Principal Class / Icon"],
+["Added tab","created on this class"],
+["Pinned Classes","quick access"],
+["u_cmdb_ci","custom table prefix"],
+["Assignment Group auto","CI selected on form"],
+["Affected CIs list","Dynamic CI Group expand"],
+["Managed By Group","DM policy assignment"],
+["last_discovery","Staleness field"],
+["30 days","Staleness default"],
+["scheduled jobs activate","Health Dashboard start"],
+["Non-CMDB table","Incident in Query Builder"],
+["Related items panel","incidents on Unified Map"],
+["Management tab","DM policies/tasks"],
+["My Work tab","Health Dashboard tasks"],
+["FREE on SN Store","Data Foundations Dashboard"],
+["Foundation→Crawl→Walk→Run→Fly","CSDM rollout order"],
+["Oldest + Most Related","Main CI in de-dup"],
+["bulk de-dup","Template"],
+["wizard de-dup","Remediator"],
+["onBefore script","IRE in transform maps"],
+["CMDBTransformUtil","prevent dup import sets"],
+["multisource_enabled","CMDB 360 property"],
+["Data Refresh Rules","fallback after inactivity"],
+["TSO > CI Class Mgr","Managed By precedence"],
+["Discrepancy Report","after Life Cycle Sync enable"],
+["Health Inclusion Rule","narrow scope / filter CIs"],
+["CMDB groups type=Health","regional scores"],
+["Cert Filter+Template+Audit","Compliance scorecard setup"],
+["Retired + EOL","before archive/delete"],
+["sn_cmdb_admin + personalize_dict","create custom class"],
+["sn_cmdb_admin + sn_csdm_admin","Principal Class roles"],
+["Asset-CI Field Mapping","sync fields CI↔Asset"],
+["Analyze + Fix Data","playbook plays"],
+["Cloud + Observability","SGC categories"],
+["Most Reported + Smallest","Dynamic rule types"],
+["Config File Path","same app × on server"],
+["Saved + Scripted queries","CMDB group methods"],
+["Support + Change group","TSO syncs to CIs"],
+["Unified Map","CI connections in Workspace"],
+["Business Criticality","prioritize services"],
+["Business Service + BSO","Sell/Consume domain"],
+];
+
+// ============================================================
+// APP STATE
+// ============================================================
+let currentIndex = 0;
+let isFlipped = false;
+let mode = 'all'; // all, unseen, learning, known
+let sectionFilter = 'all';
+let cardStates = {}; // {cardId: 'unseen'|'learning'|'known'}
+let filteredCards = [];
+
+// Load saved state
+function loadState() {
+  try {
+    const saved = localStorage.getItem('cisdf_states');
+    if (saved) cardStates = JSON.parse(saved);
+  } catch(e) {}
+}
+function saveState() {
+  try { localStorage.setItem('cisdf_states', JSON.stringify(cardStates)); } catch(e) {}
+}
+
+function getCardState(id) {
+  return cardStates[id] || 'unseen';
+}
+
+// ============================================================
+// FILTERING
+// ============================================================
+function applyFilters() {
+  filteredCards = CARDS.filter(c => {
+    if (sectionFilter !== 'all' && c.section !== sectionFilter) return false;
+    if (mode !== 'all' && getCardState(c.id) !== mode) return false;
+    return true;
+  });
+  if (currentIndex >= filteredCards.length) currentIndex = Math.max(0, filteredCards.length - 1);
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function getTagClass(section) {
+  const map = {'CSDM Fundamentals':'tag-csdm','Configuration':'tag-config','Govern':'tag-govern','Ingest':'tag-ingest','Insight':'tag-insight'};
+  return map[section] || 'tag-csdm';
+}
+function getFreqLabel(freq) {
+  const map = {hot:'🔥 ออกบ่อยมาก',warm:'⚡ ออกบ่อย',normal:'📌 ออกปกติ'};
+  return map[freq] || '';
+}
+function getFreqClass(freq) {
+  return 'freq-' + (freq || 'normal');
+}
+
+function renderCard() {
+  const container = document.getElementById('card-container');
+  const front = document.getElementById('card-front');
+  const back = document.getElementById('card-back');
+  const flashcard = document.getElementById('flashcard');
+
+  // Reset flip
+  isFlipped = false;
+  flashcard.classList.remove('flipped');
+
+  if (filteredCards.length === 0) {
+    front.innerHTML = `
+      <div style="text-align:center;padding:40px 0">
+        <div style="font-size:3rem;margin-bottom:16px">🎉</div>
+        <div style="font-size:1.2rem;font-weight:700;margin-bottom:8px">ไม่มีการ์ดในหมวดนี้</div>
+        <div style="color:var(--text3);font-size:.9rem">ลองเปลี่ยน filter หรือ mode ดูครับ</div>
+      </div>`;
+    back.innerHTML = '';
+    return;
+  }
+
+  const card = filteredCards[currentIndex];
+  const state = getCardState(card.id);
+
+  // Front
+  front.innerHTML = `
+    <span class="card-section-tag ${getTagClass(card.section)}">${card.section}</span>
+    <div class="card-badge">
+      <span class="num">#${card.id} / ${filteredCards.length} การ์ด</span>
+      <span class="card-freq ${getFreqClass(card.freq)}">${'⭐'.repeat(card.stars)} ${getFreqLabel(card.freq)}</span>
+    </div>
+    <div class="card-question">❓ ${card.q}</div>
+    ${card.hint ? `<div class="card-hint">💡 ${card.hint}</div>` : ''}
+    <div class="card-tap">👆 แตะ/คลิกเพื่อดูคำตอบ</div>
+  `;
+
+  // Back
+  const answerLines = card.a.split('\n').map(l => `<div>${l}</div>`).join('');
+  back.innerHTML = `
+    <span class="card-section-tag ${getTagClass(card.section)}">${card.section}</span>
+    <div class="answer-label">✅ คำตอบ</div>
+    <div class="card-answer">${answerLines}</div>
+    <div class="card-explain">
+      ${card.explain}
+      ${card.th ? `<span class="th-note">🇹🇭 ${card.th}</span>` : ''}
+    </div>
+  `;
+
+  // Animation
+  container.style.animation = 'none';
+  container.offsetHeight; // trigger reflow
+  container.style.animation = 'slideIn .4s ease';
+}
+
+function renderStats() {
+  let total = 0, known = 0, learning = 0, unseen = 0;
+  const base = sectionFilter === 'all' ? CARDS : CARDS.filter(c => c.section === sectionFilter);
+  base.forEach(c => {
+    total++;
+    const s = getCardState(c.id);
+    if (s === 'known') known++;
+    else if (s === 'learning') learning++;
+    else unseen++;
+  });
+  document.getElementById('s-total').textContent = total;
+  document.getElementById('s-known').textContent = known;
+  document.getElementById('s-learning').textContent = learning;
+  document.getElementById('s-unseen').textContent = unseen;
+
+  const pct = total ? Math.round((known / total) * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = `${known} / ${total} จำได้`;
+  document.getElementById('prog-pct').textContent = pct + '%';
+}
+
+function renderSectionFilter() {
+  const sections = ['all', ...new Set(CARDS.map(c => c.section))];
+  const labels = {all:'📚 ทั้งหมด','CSDM Fundamentals':'🏗️ CSDM','Configuration':'⚙️ Config','Govern':'🛡️ Govern','Ingest':'📥 Ingest','Insight':'🔍 Insight'};
+  const container = document.getElementById('section-filter');
+  container.innerHTML = sections.map(s =>
+    `<button class="section-chip ${s === sectionFilter ? 'active' : ''}" onclick="setSectionFilter('${s}')">${labels[s] || s}</button>`
+  ).join('');
+}
+
+function renderCheat() {
+  const grid = document.getElementById('cheat-grid');
+  grid.innerHTML = CHEAT.map(([k, v]) =>
+    `<div class="cheat-item"><span class="key">${k}</span><span class="val">→ ${v}</span></div>`
+  ).join('');
+}
+
+function renderAll() {
+  applyFilters();
+  renderCard();
+  renderStats();
+  renderSectionFilter();
+}
+
+// ============================================================
+// ACTIONS
+// ============================================================
+function flipCard() {
+  if (filteredCards.length === 0) return;
+  isFlipped = !isFlipped;
+  document.getElementById('flashcard').classList.toggle('flipped', isFlipped);
+}
+
+function nextCard() {
+  if (filteredCards.length === 0) return;
+  currentIndex = (currentIndex + 1) % filteredCards.length;
+  renderCard();
+}
+
+function prevCard() {
+  if (filteredCards.length === 0) return;
+  currentIndex = (currentIndex - 1 + filteredCards.length) % filteredCards.length;
+  renderCard();
+}
+
+function rateCard(rating) {
+  if (filteredCards.length === 0) return;
+  const card = filteredCards[currentIndex];
+  cardStates[card.id] = rating;
+  saveState();
+  nextCard();
+  renderStats();
+}
+
+function setMode(m) {
+  mode = m;
+  currentIndex = 0;
+  document.querySelectorAll('.controls .ctrl-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('mode-' + m)?.classList.add('active');
+  renderAll();
+}
+
+function setSectionFilter(s) {
+  sectionFilter = s;
+  currentIndex = 0;
+  renderAll();
+}
+
+function shuffleCards() {
+  for (let i = filteredCards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [filteredCards[i], filteredCards[j]] = [filteredCards[j], filteredCards[i]];
+  }
+  currentIndex = 0;
+  renderCard();
+}
+
+function toggleCheat() {
+  const btn = document.getElementById('cheat-toggle');
+  const content = document.getElementById('cheat-content');
+  btn.classList.toggle('open');
+  content.classList.toggle('open');
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', next);
+  document.querySelector('.theme-btn').textContent = next === 'light' ? '☀️' : '🌙';
+  try { localStorage.setItem('cisdf_theme', next); } catch(e) {}
+}
+
+// ============================================================
+// KEYBOARD & TOUCH
+// ============================================================
+document.addEventListener('keydown', e => {
+  switch(e.key) {
+    case ' ': case 'Enter': e.preventDefault(); flipCard(); break;
+    case 'ArrowRight': nextCard(); break;
+    case 'ArrowLeft': prevCard(); break;
+    case '1': rateCard('known'); break;
+    case '2': rateCard('learning'); break;
+    case '3': rateCard('unseen'); break;
+  }
+});
+
+// Swipe support
+let touchStartX = 0, touchStartY = 0;
+document.getElementById('card-container').addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, {passive: true});
+document.getElementById('card-container').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].screenX - touchStartX;
+  const dy = e.changedTouches[0].screenY - touchStartY;
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) {
+    if (dx > 0) prevCard(); else nextCard();
+  }
+}, {passive: true});
+
+// ============================================================
+// INIT
+// ============================================================
+(function init() {
+  // Load theme
+  try {
+    const t = localStorage.getItem('cisdf_theme');
+    if (t) {
+      document.documentElement.setAttribute('data-theme', t);
+      document.querySelector('.theme-btn').textContent = t === 'light' ? '☀️' : '🌙';
+    }
+  } catch(e) {}
+
+  loadState();
+  renderCheat();
+  renderAll();
+})();
+</script>
+</body>
+</html>
